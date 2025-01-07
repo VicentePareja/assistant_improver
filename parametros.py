@@ -1,11 +1,6 @@
 # name of the assitant
 NAME = "House of Spencer"
-# name models
-FINE_TUNED_MODEL_WITHOUT_EXAMPLES_SUFIX = f"fine-tuned_whithout_examples"
-FINE_TUNED_MODEL_WITH_EXAMPLES_SUFIX = f"fine-tuned_with_examples"
 BASE_MODEL_SUFIX = f"base"
-WITHOUT_EXAMPLES_MODEL_SUFIX = f"without_examples"
-
 
 # base parametres for the assistants
 BASE_MODEL = "gpt-4o-mini-2024-07-18"
@@ -15,7 +10,8 @@ TOP_P = 1
 
 # Finetunning model
 N_EPOCHS = 1
-FINE_TUNE_MODEL_SUFIX = f"fine-tuned"
+N_WORST_EXAMPLES = 10
+FINE_TUNED_MODEL_SUFIX = f"fine-tuned_whith_worst_examples"
 
 # evaluator assistant
 EVAL_MODEL = "gpt-4o-mini-2024-07-18"
