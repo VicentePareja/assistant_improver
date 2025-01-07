@@ -1,0 +1,7 @@
+python-dotenv
+openai
+tqdm
+google-api-python-client
+google-auth
+typing-extensions
+requests
