@@ -80,7 +80,7 @@ PATH_FINE_TUNED_ANSWERS_CSV = f"data/test/{ASSISTANT_NAME}_fine_tuned_assistant_
 PATH_FINE_TUNED_GRADES_CSV = f"data/test/{ASSISTANT_NAME}_fine_tuned_assistant_grades.csv"
 
 # The CSV that unifies everything in step 13
-PATH_UNIFIED_RESULTS_CSV = f"data/evaluator/{ASSISTANT_NAME}_unified_results.csv"
+PATH_UNIFIED_RESULTS_CSV = f"data/results/{ASSISTANT_NAME}_unified_results.csv"
 
 # ------------------------------------------------------------------
 # 7) Fine-Tuning Data for the Worst Questions

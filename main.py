@@ -513,36 +513,36 @@ class Main:
           12) grade fine-tuned answers
           13) unify CSV
         """
-                # 1) Create instructions & separate examples
-        # self.create_instructions()
+        # 1) Create instructions & separate examples
+        self.create_instructions()
 
         # 2) Create the test CSV
-        #self.create_static_tests()
+        self.create_static_tests()
 
         # 3) Create base assistant
-        #self.create_base_assistant()
+        self.create_base_assistant()
 
         # 4) Get base answers
-        #self.get_base_assistant_answers()
+        self.get_base_assistant_answers()
 
         # 5) Create evaluator
-        #self.create_evaluator_assistant()
+        self.create_evaluator_assistant()
 
         # 6) Grade base answers
-        #self.grade_base_assistant_responses()
+        self.grade_base_assistant_responses()
 
         # 7) Gather worst questions
-        #worst_questions = self.gather_worst_indices()
-        #self.create_worst_questions_file(worst_questions)
+        worst_questions = self.gather_worst_indices()
+        self.create_worst_questions_file(worst_questions)
 
         # 8,9,10) Fine-tune model + create fine-tuned assistant
-        #self.fine_tune_new_assistant_workflow()
+        self.fine_tune_new_assistant_workflow()
 
         # 11) Get fine-tuned answers
-        #self.get_fine_tuned_assistant_answers()
+        self.get_fine_tuned_assistant_answers()
 
         # 12) Grade fine-tuned answers
-        #self.grade_fine_tuned_assistant_responses()
+        self.grade_fine_tuned_assistant_responses()
 
         # 13) Unify results
         self.unify_results_in_single_csv()

@@ -1,191 +1,278 @@
-# HOS Assistant Creation and Evaluation
+Below is a **comprehensive `README.md`** file you can place at the **root of your project**. It explains:
 
-This project automates the creation, fine-tuning, and evaluation of AI assistants based on OpenAI's language models. It provides a pipeline to generate assistants with different configurations, test their performance, and grade their outputs for quality.
+1. **What the project does**  
+2. **How it’s organized**  
+3. **How to install and run everything**  
+4. **A detailed breakdown** of the main steps in the workflow  
 
-## Project Structure
+Feel free to adapt paths, commands, or instructions as needed for your specific environment.
+
+---
+
+```markdown
+# Assistant Improver
+
+This repository provides a **complete pipeline** to create, refine, test, and evaluate an **OpenAI-based assistant** (referred to here as *"House of Spencer"*). The pipeline uses custom Python scripts and a well-defined series of steps to:
+
+1. **Extract instructions** from a Google Doc, separate examples from the rest.  
+2. **Generate a test set** of questions and human answers.  
+3. **Create a base assistant** (using instructions).  
+4. **Obtain** that base assistant’s **answers** on the test.  
+5. **Create an evaluator** assistant.  
+6. **Grade** each of the base assistant’s answers (store numeric scores).  
+7. **Identify** the worst-performing questions (lowest grades).  
+8. **Convert** those worst questions into JSON/JSONL.  
+9. **Upload** them to OpenAI and **fine-tune** a new model.  
+10. **Create** the fine-tuned assistant.  
+11. **Obtain** the fine-tuned assistant’s answers.  
+12. **Grade** those answers with the same evaluator.  
+13. **Unify** everything in one final CSV.
+
+---
+
+## Table of Contents
+
+1. [Project Structure](#project-structure)  
+2. [Requirements](#requirements)  
+3. [Installation](#installation)  
+4. [Environment Setup](#environment-setup)  
+5. [Usage and Workflow](#usage-and-workflow)  
+   1. [Step 1: Instructions](#step-1-instructions)  
+   2. [Step 2: Create Test CSV](#step-2-create-test-csv)  
+   3. [Step 3: Create Base Assistant](#step-3-create-base-assistant)  
+   4. [Step 4: Get Base Answers](#step-4-get-base-answers)  
+   5. [Step 5: Create Evaluator Assistant](#step-5-create-evaluator-assistant)  
+   6. [Step 6: Grade Base Answers](#step-6-grade-base-answers)  
+   7. [Step 7: Gather Worst Questions](#step-7-gather-worst-questions)  
+   8. [Steps 8-10: Fine-Tuning Workflow](#steps-8-10-fine-tuning-workflow)  
+   9. [Step 11: Fine-Tuned Answers](#step-11-fine-tuned-answers)  
+   10. [Step 12: Grade Fine-Tuned Answers](#step-12-grade-fine-tuned-answers)  
+   11. [Step 13: Unify Everything](#step-13-unify-everything)  
+6. [Troubleshooting](#troubleshooting)  
+7. [License](#license)
+
+---
+
+## 1. Project Structure
+
+A high-level look at the repository’s folders and files:
 
 ```
-ASSISTANTS-CREATOR/
-├── __pycache__/
+assistant_improver/
 ├── data/
-│   ├── assistant_responses/
 │   ├── assistants_ids/
-│   │   └── HOSid_assistants.txt
+│   │   ├── House of Spencer_assistants_ids.txt
+│   │   └── House of Spencer_static_evaluator_id.txt
+│   ├── fine_tune/
+│   ├── original_instructions/
+│   │   └── House of Spencer_original_instructions.txt
 │   ├── separate_examples_from_text/
-│   │   ├── HOSexamples.jsonl
-│   │   ├── HOSexamples.txt
-│   │   ├── HOStext_without_examples.txt
-│   ├── evaluator/
-│   │   ├── HOSstatic_evaluator_results.csv
-│   │   ├── unified_results.csv
+│   │   ├── House of Spencer_examples.txt
+│   │   └── House of Spencer_text_without_examples.txt
 │   ├── test/
-│   │   ├── HOSstatic_test_examples.txt
-│   │   ├── HOSstatic_test_results.csv
+│   │   ├── House of Spencer_base_test_examples.csv
+│   │   ├── House of Spencer_base_assistant_answers.csv
+│   │   ├── House of Spencer_base_assistant_grades.csv
+│   │   ├── House of Spencer_fine_tuned_assistant_answers.csv
+│   │   └── House of Spencer_fine_tuned_assistant_grades.csv
+│   ├── worst_questions/
+│   │   ├── House of Spencer_worst_questions.txt
+│   │   └── House of Spencer_worst_questions.jsonl
+│   └── evaluator/
+│       └── House of Spencer_unified_results.csv
+├── evaluator_prompt/
+│   ├── static/
+│   │   └── House of Spencer_static_evaluator_prompt.txt
+│   └── dynamic/
 ├── src/
 │   ├── instructions_creation/
 │   │   ├── file_importer.py
 │   │   ├── text_separator.py
+│   │   └── intructions_id_finder.py
 │   ├── assistant_creator/
 │   │   └── assistant_creator.py
 │   ├── assistant_finetuner/
-│   │   ├── create_finetune_model.py
 │   │   ├── examples_to_jsonl.py
-│   │   ├── upload_jsonl.py
-│   ├── assistant_testing/
-│   │   ├── static_test_creator.py
-│   │   ├── static_assistant_tester.py
-│   │   ├── static_grader_results.py
-├── main.py
-├── parametros.py
-├── .env
+│   │   ├── create_finetune_model.py
+│   │   └── upload_jsonl.py
+│   └── assistant_testing/
+│       ├── static_test_creator.py
+│       ├── static_assistant_tester.py
+│       └── static_grader_results.py
+├── main.py                # The main orchestrator script
+├── parameters.py          # Holds all constants, paths, and model settings
+├── requirements.txt       # Python dependencies
+├── README.md              # (You are here)
+└── .env                   # For environment variables (OpenAI keys, etc.)
 ```
 
-## tasks of the code:
+---
 
-1. create the instructions and separete the examples from the rest.
+## 2. Requirements
 
-2. create the test with the questions and the human answers
+All Python dependencies are listed in **`requirements.txt`**. Typically, they include:
 
-3. create the base assistant
+- `openai`  
+- `python-dotenv`  
+- Possibly other libraries depending on your environment (e.g., `requests`, `pandas`).
 
-4. recieve and store the machine answers of the tests
+---
 
-5. create an evaluator assistant
+## 3. Installation
 
-6. evaluate (grade) each response of the base assistant.
-
-7. Gather the worst questions (worsts grades) and put them in the correct format (JSONL)
-
-8. upload the jsonl file to open ai
-
-9. Create a fine tuned model
-
-10. create a fine tuned assistant
-
-11. reacieve the answers of the fine tuned model and store them
-
-12. with the same evaluator grade each answer
-
-13. Make a unified .csv file with the following structure: Question, human answer, NAME_base_answer, NAME_base_grade, NAME_fine_tuned_answer, NAME_fine_tuned_grade
-
-
-## Setup
-
-### Prerequisites
-- Python 3.10+
-- OpenAI API key
-- Google service account credentials
-- `.env` file for sensitive information
-
-### Installation
-1. Clone the repository:
+1. **Clone** this repository:
    ```bash
-   git clone <repository_url>
-   cd ASSISTANTS-CREATOR
+   git clone https://github.com/your-user/assistant_improver.git
+   cd assistant_improver
    ```
-2. Install dependencies:
+2. **Create and activate** a virtual environment (recommended):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate    # On Linux/Mac
+   # or venv\Scripts\activate  # On Windows
+   ```
+3. **Install** all dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Create a `.env` file with the following content:
-   ```env
-   OPENAI_API_KEY=<your_openai_api_key>
-   SERVICE_ACCOUNT_FILE=<path_to_google_service_account_json>
-   DOCUMENT_ID=<google_doc_id>
-   ID_ASSISTANT_TEXT_SEPARATOR=<assistant_id>
-   ```
+4. **Configure environment variables** in `.env` (see [Environment Setup](#environment-setup)).
 
-### Google Services Setup
+---
 
-To enable Google Docs access for the project:
+## 4. Environment Setup
 
-1. **Enable Google Docs API**:
-   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
-   - Navigate to **APIs & Services** > **Library**.
-   - Search for **Google Docs API**.
-   - Click **Enable**.
+Create a file named **`.env`** in the project’s root directory with the following variables (adapt as needed):
 
-2. **Create a Service Account**:
-   - Navigate to **IAM & Admin** > **Service Accounts**.
-   - Click **Create Service Account**.
-   - Enter a name (e.g., "AssistantCreator Service Account") and click **Create and Continue**.
-   - Assign the **Editor** role to the service account.
-   - Click **Done**.
+```ini
+# .env
+OPENAI_API_KEY=your_api_key_here
+SERVICE_ACCOUNT_FILE=/absolute/path/to/service_account_credentials.json
+ID_ASSISTANT_TEXT_SEPARATOR=ID-of-text-separator-assistant
+```
 
-3. **Generate Service Account Credentials**:
-   - In the **Service Accounts** section, find your service account.
-   - Click on the service account and go to the **Keys** tab.
-   - Click **Add Key** > **Create New Key**.
-   - Choose **JSON** and download the key file.
-   - Save the file in your project directory and update the `SERVICE_ACCOUNT_FILE` path in your `.env` file.
+- **`OPENAI_API_KEY`**: Your OpenAI API key  
+- **`SERVICE_ACCOUNT_FILE`**: Path to Google service account credentials (for accessing Google Docs, if used)  
+- **`ID_ASSISTANT_TEXT_SEPARATOR`**: The ID of an existing assistant specialized in “text separating” (if your pipeline uses one)
 
-4. **Share Google Document with Service Account**:
-   - Open the Google Document you want to use.
-   - Click **Share** in the top-right corner.
-   - Add the service account email (e.g., `your-service-account@your-project.iam.gserviceaccount.com`) as a Viewer or Editor.
-   - Save the changes.
+---
 
-## Usage
+## 5. Usage and Workflow
 
-1. **Run the Main Script**:
-   ```bash
-   python main.py
-   ```
+All major steps are **orchestrated** in **`main.py`**. You can **uncomment** or **comment** lines in the `run()` method to choose which steps to run.
 
-2. **Pipeline Steps**:
-   - Import instructions from Google Docs.
-   - Create assistants:
-     - Without examples
-     - Base assistant
-     - Fine-tuned assistant
-   - Generate and evaluate static tests.
+### Step 1: Instructions
 
-3. **Results**:
-   - Check assistant IDs in `data/assistants_ids/`.
-   - Review test results in `data/test/`.
-   - Analyze unified grades in `data/evaluator/unified_results.csv`.
+1. **`create_instructions()`**  
+   - Finds the doc ID on Google Drive for your assistant’s instructions.  
+   - Imports the doc text locally.  
+   - Separates “examples” from the rest using a specialized “text separator” assistant.
 
-## Parameters
-Defined in `parametros.py`:
+### Step 2: Create Test CSV
 
-- `NAME`: Assistant name.
-- `BASE_MODEL`: Base OpenAI model to use.
-- Paths for instructions, examples, JSONL files, test results, and evaluation results.
+1. **`create_static_tests()`**  
+   - Reads the newly extracted examples (`House of Spencer_examples.txt`) and creates a standardized CSV of question-and-answer pairs.  
+   - Example output: `House of Spencer_base_test_examples.csv`.
 
-## File Outputs
+### Step 3: Create Base Assistant
 
-### Assistants
-- `data/assistants_ids/`: Stores IDs of created assistants.
+1. **`create_base_assistant()`**  
+   - Reads your instructions from `House of Spencer_original_instructions.txt`.  
+   - Creates an assistant on OpenAI (the “base” assistant).  
+   - Writes the new assistant’s ID to `data/assistants_ids/House of Spencer_assistants_ids.txt`.
 
-### Tests
-- `data/test/`: Contains static test examples and results.
+### Step 4: Get Base Answers
 
-### Evaluation
-- `data/evaluator/`: Contains graded results and the unified results CSV.
+1. **`get_base_assistant_answers()`**  
+   - Runs the **base** assistant over `House of Spencer_base_test_examples.csv`.  
+   - Stores just the answers (with questions & human answers) in `House of Spencer_base_assistant_answers.csv`.
 
-## Extending the Project
+### Step 5: Create Evaluator Assistant
 
-1. **Adding New Tests**:
-   - Update `StaticExamplesTestCreator` with additional test cases.
+1. **`create_evaluator_assistant()`**  
+   - Creates a special assistant that can “grade” or “score” answers.  
+   - Uses `House of Spencer_static_evaluator_prompt.txt` for instructions.  
+   - Writes the ID to `data/assistants_ids/House of Spencer_static_evaluator_id.txt`.
 
-2. **Supporting More Models**:
-   - Modify `parametros.py` to include new model configurations.
+### Step 6: Grade Base Answers
 
-## Contributing
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature/new-feature
-   ```
-3. Commit changes:
-   ```bash
-   git commit -m "Add new feature"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/new-feature
-   ```
-5. Create a pull request.
+1. **`grade_base_assistant_responses()`**  
+   - Uses the evaluator assistant to assign numeric grades to each answer from **Step 4**.  
+   - Outputs a new file, `House of Spencer_base_assistant_grades.csv`, which includes a “grade” column.
 
-## License
-This project is licensed under the MIT License.
+### Step 7: Gather Worst Questions
+
+1. **`gather_worst_indices()`**  
+   - Reads the “grades” CSV, sorts by grade ascending (lowest first).  
+   - Retrieves the row indices of the worst (lowest-scoring) entries.  
+2. **`create_worst_questions_file()`**  
+   - Looks up those row indices in `House of Spencer_base_assistant_answers.csv` and extracts the `question` + `human_answer`.  
+   - Writes them to a new file `House of Spencer_worst_questions.txt` as an **array** of objects:
+     ```json
+     [
+       {"Q": "question1", "A": "answer1"},
+       {"Q": "question2", "A": "answer2"}
+     ]
+     ```
+
+### Steps 8–10: Fine-Tuning Workflow
+
+1. **`convert_worst_txt_to_jsonl()`**  
+   - Converts the `.txt` with Q&A to `.jsonl` format (OpenAI’s required input).  
+2. **`upload_worst_jsonl()`**  
+   - Uploads the `.jsonl` to OpenAI.  
+3. **`create_fine_tuning_job()`**  
+   - Initiates the fine-tuning job with the newly uploaded file.  
+   - Monitors until completion.  
+4. **`create_fine_tuned_assistant()`**  
+   - Wraps the fine-tuned model in an assistant (similar to the base assistant creation).  
+
+### Step 11: Fine-Tuned Answers
+
+1. **`get_fine_tuned_assistant_answers()`**  
+   - Runs the newly created fine-tuned assistant on the same test CSV.  
+   - Stores the output in `House of Spencer_fine_tuned_assistant_answers.csv`.
+
+### Step 12: Grade Fine-Tuned Answers
+
+1. **`grade_fine_tuned_assistant_responses()`**  
+   - Uses the **same** evaluator assistant from Step 5 to score the fine-tuned answers.  
+   - Produces `House of Spencer_fine_tuned_assistant_grades.csv`.
+
+### Step 13: Unify Everything
+
+1. **`unify_results_in_single_csv()`**  
+   - Reads **four** files:
+     - Base answers  
+     - Base grades  
+     - Fine-tuned answers  
+     - Fine-tuned grades  
+   - Merges them by **index** (or question) into one CSV: `House of Spencer_unified_results.csv`.  
+   - Columns:
+     ```
+     question,
+     human_response,
+     House of Spencer_base_answer,
+     House of Spencer_base_grade,
+     House of Spencer_fine_tuned_answer,
+     House of Spencer_fine_tuned_grade
+     ```
+
+---
+
+## 6. Troubleshooting
+
+- **Missing `.env`**: If `OPENAI_API_KEY` or `SERVICE_ACCOUNT_FILE` is not found, your code may raise connection errors.  
+- **File Not Found**: Check your paths in `parameters.py` if you see “Missing file: …” messages.  
+- **Sorting / Index Mismatch**: The code uses row **indices** to match answers with grades. Ensure you do **not** manually sort CSVs in between steps, or else the row alignment will break.  
+- **Google Docs Import**: If your doc ID or service account credentials are invalid, you may get errors from the `file_importer.py` script.
+
+---
+
+## 7. License
+
+This project is distributed under your preferred license. Update this section as appropriate (e.g., MIT, Apache 2.0, etc.).
+
+---
+
+**Enjoy refining your AI assistant!** If you have any questions or run into issues, feel free to open a ticket or reach out to the repository maintainers.
+```
