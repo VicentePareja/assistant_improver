@@ -1,5 +1,5 @@
 from openai import OpenAI
-from parametros import NAME
+from parameters import ASSISTANT_NAME
 
 class AssistantCreator:
     def __init__(self, api_key: str, instructions_path: str):
@@ -12,7 +12,7 @@ class AssistantCreator:
 
     def create_assistant(self, name_suffix: str, model: str, tools: list, temperature = float, max_tokens = int, top_p = float):
         instructions = self.load_instructions()
-        name = f"{NAME}_{name_suffix}"
+        name = f"{ASSISTANT_NAME}_{name_suffix}"
         print(f"Creating assistant with name: {name}")
         return self.client.beta.assistants.create(
             name=name,

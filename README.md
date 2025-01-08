@@ -40,41 +40,34 @@ ASSISTANTS-CREATOR/
 ├── .env
 ```
 
-## Key Components
+## tasks of the code:
 
-### 1. **Instructions Creation**
-- **GoogleDocReader**: Imports instructions from Google Docs.
-- **TextSeparator**: Separates examples from the main instruction text.
+1. create the instructions and separete the examples from the rest.
 
-### 2. **Assistant Creation**
-- **AssistantCreator**: Creates OpenAI-based assistants using various instruction sets and configurations.
-- **Finetuning**:
-  - Converts example text to JSONL.
-  - Uploads training data to OpenAI.
-  - Fine-tunes the base model.
+2. create the test with the questions and the human answers
 
-### 3. **Assistant Testing**
-- **StaticExamplesTestCreator**: Generates static test sets from provided examples.
-- **StaticAssistantsRunner**: Runs test cases on created assistants and collects results.
+3. create the base assistant
 
-### 4. **Evaluation**
-- **FileManagerGrader**: Grades assistant outputs against human-provided answers.
-- **Unified CSV Results**: Combines test results and grades into a unified CSV for analysis.
+4. recieve and store the machine answers of the tests
 
-## Features
+5. create an evaluator assistant
 
-1. **Assistant Variants**:
-   - **Base Assistant**: Uses the original instructions.
-   - **Without Examples Assistant**: Uses instructions without examples.
-   - **Fine-Tuned Assistant**: Uses a fine-tuned model.
+6. evaluate (grade) each response of the base assistant.
 
-2. **Automated Testing**:
-   - Static tests are run across all assistant variants.
-   - Results are graded and stored in CSV files.
+7. Gather the worst questions (worsts grades) and put them in the correct format (JSONL)
 
-3. **Evaluation Metrics**:
-   - Assistants are graded by comparing their outputs to human answers.
-   - Results are unified into a single CSV for easier analysis.
+8. upload the jsonl file to open ai
+
+9. Create a fine tuned model
+
+10. create a fine tuned assistant
+
+11. reacieve the answers of the fine tuned model and store them
+
+12. with the same evaluator grade each answer
+
+13. Make a unified .csv file with the following structure: Question, human answer, NAME_base_answer, NAME_base_grade, NAME_fine_tuned_answer, NAME_fine_tuned_grade
+
 
 ## Setup
 

@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from openai import OpenAI, AssistantEventHandler
 from typing_extensions import override
 from tqdm import tqdm  # <-- for the progress bar
-from parametros import QUESTION_COLUMN, HUMAN_RESPONSE_COLUMN
+from parameters import COLUMN_HUMAN_ANSWER, COLUMN_QUESTION
 
 class EventHandler(AssistantEventHandler):
     """Event handler to stream responses from the assistant in real time."""
@@ -99,9 +99,9 @@ class StaticAssistantsRunner:
         with open(self.csv_file_path, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                question = row.get(QUESTION_COLUMN, "").strip()
-                human_answer = row.get(HUMAN_RESPONSE_COLUMN, "").strip()
-                self.qa_data.append({QUESTION_COLUMN: question, HUMAN_RESPONSE_COLUMN: human_answer})
+                question = row.get(COLUMN_QUESTION, "").strip()
+                human_answer = row.get(COLUMN_HUMAN_ANSWER, "").strip()
+                self.qa_data.append({COLUMN_QUESTION: question, COLUMN_HUMAN_ANSWER: human_answer})
 
         print(f"Loaded {len(self.qa_data)} Q&A rows from {self.csv_file_path}.")
 
@@ -180,7 +180,7 @@ class StaticAssistantsRunner:
             return
 
         # Prepare the output CSV columns
-        fieldnames = [QUESTION_COLUMN, HUMAN_RESPONSE_COLUMN] + list(self.assistants_dict.keys())
+        fieldnames = [COLUMN_QUESTION, COLUMN_HUMAN_ANSWER] + list(self.assistants_dict.keys())
 
         try:
             with open(self.output_csv_path, 'w', newline='', encoding='utf-8') as out_f:
@@ -191,13 +191,13 @@ class StaticAssistantsRunner:
                 with tqdm(total=len(self.qa_data), desc="Processing QA pairs") as pbar:
                     for idx, item in enumerate(self.qa_data, start=1):
                         row = {
-                            QUESTION_COLUMN: item[QUESTION_COLUMN],
-                            HUMAN_RESPONSE_COLUMN: item[HUMAN_RESPONSE_COLUMN],
+                            COLUMN_QUESTION: item[COLUMN_QUESTION],
+                            COLUMN_HUMAN_ANSWER: item[COLUMN_HUMAN_ANSWER],
                         }
 
                         # Query each assistant
                         for asst_name, asst_id in self.assistants_dict.items():
-                            answer = self.run_assistant(asst_id, item[QUESTION_COLUMN])
+                            answer = self.run_assistant(asst_id, item[COLUMN_QUESTION])
                             row[asst_name] = answer
 
                         # Write the row to the output CSV
