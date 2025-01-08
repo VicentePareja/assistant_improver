@@ -205,7 +205,7 @@ class Main:
     # -------------------------------------------------------------------------
     # 4) RECEIVE & STORE MACHINE ANSWERS (Base Assistant) 
     # -------------------------------------------------------------------------
-    def evaluate_base_assistant(self):
+    def get_base_assistant_answers(self):
         """
         Run the static test using the base assistant. 
         The results (answers) get stored in PATH_TEST_RESULTS_BASE_CSV.
@@ -405,7 +405,7 @@ class Main:
     # -------------------------------------------------------------------------
     # 11) RECEIVE THE ANSWERS OF THE FINE-TUNED MODEL & STORE THEM
     # -------------------------------------------------------------------------
-    def evaluate_fine_tuned_assistant(self):
+    def get_fine_tuned_assistant_answers(self):
         """
         Run the static test using the new fine-tuned assistant.
         Store answers in PATH_TEST_RESULTS_FINE_TUNED_CSV.
@@ -542,39 +542,37 @@ class Main:
           13) Unify into CSV
         """
         # 1) create instructions & separate examples
-        self.create_instructions()
+        #self.create_instructions()
 
-        """
         # 2) create test CSV
-        self.create_static_tests()
+        #self.create_static_tests()
 
         # 3) create base assistant
-        self.create_base_assistant()
+        #self.create_base_assistant()
 
         # 4) get base answers
-        self.evaluate_base_assistant()
+        self.get_base_assistant_answers()
 
         # 5) create evaluator
-        self.create_evaluator_assistant()
+        #self.create_evaluator_assistant()
 
         # 6) grade base answers
-        self.grade_base_assistant_responses()
+        #self.grade_base_assistant_responses()
 
         # 7) gather worst questions
-        worst_questions = self.gather_worst_questions()
+        #worst_questions = self.gather_worst_questions()
 
         # 8,9,10) fine-tune model & create fine-tuned assistant
-        self.fine_tune_new_assistant(worst_questions)
+        #self.fine_tune_new_assistant(worst_questions)
 
         # 11) get fine-tuned answers
-        self.evaluate_fine_tuned_assistant()
+        #self.get_fine_tuned_assistant_answers()
 
         # 12) grade fine-tuned answers
-        self.grade_fine_tuned_assistant_responses()
+        #self.grade_fine_tuned_assistant_responses()
 
         # 13) unify CSV
-        self.unify_results_in_single_csv()
-        """
+        #self.unify_results_in_single_csv()
 
 
 if __name__ == "__main__":
