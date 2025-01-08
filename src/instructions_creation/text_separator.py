@@ -1,4 +1,3 @@
-# text_separator.py
 import sys
 sys.stdout.reconfigure(encoding='utf-8')  # Ensure UTF-8 output
 
@@ -9,10 +8,11 @@ from dotenv import load_dotenv
 from openai import OpenAI, AssistantEventHandler
 from typing_extensions import override
 
-from parametros import (
-    TEXT_WITHOUT_EXAMPLES_PATH,
-    INSTRUCTIONS_PATH,
-    EXAMPLES_PATH,
+# Import updated parameter names from parameters.py
+from parameters import (
+    PATH_INSTRUCTIONS_NO_EXAMPLES,
+    PATH_INSTRUCTIONS_TXT,
+    PATH_EXAMPLES_TXT,
 )
 
 ################################################################################
@@ -58,32 +58,32 @@ class TextSeparator:
         extracts JSON, writes text outputs, etc.
         """
         # 1. Read your instructions from a local file
-        prompt = self._read_instructions(INSTRUCTIONS_PATH)
+        prompt = self._read_instructions(PATH_INSTRUCTIONS_TXT)
 
         # 2. Send prompt to the assistant and capture the combined response
         combined_response = self._ask_assistant(prompt)
-
         if not combined_response:
             print("No valid response from assistant or error encountered.")
             return
 
         # 3. Extract the JSON portion from the combined response
         actual_json_str = self._extract_json(combined_response)
-
         if not actual_json_str:
             print("No JSON object found in the response.")
             return
 
         # 4. Parse that JSON
         text_without_examples, only_examples = self._parse_json(actual_json_str)
-
         if text_without_examples is None and only_examples is None:
             # Means we failed to parse
             return
 
         # 5. Write the results to file
         self._write_results(text_without_examples, only_examples)
-        print(f"Saved JSON fields into '{TEXT_WITHOUT_EXAMPLES_PATH}' and '{EXAMPLES_PATH}'")
+        print(
+            f"Saved JSON fields into '{PATH_INSTRUCTIONS_NO_EXAMPLES}' "
+            f"and '{PATH_EXAMPLES_TXT}'"
+        )
 
     ########################################################################
     # Internal helper methods (all OOP)
@@ -147,39 +147,30 @@ class TextSeparator:
 
     def _extract_json(self, combined_response: str) -> str:
         """
-        Extrae la porción JSON de la respuesta combinada usando un regex mejorado.
-        Sanitiza el contenido antes de retornarlo.
+        Extracts the JSON portion of the combined_response using a regex.
+        Sanitizes the content before returning.
         """
-        # Regex para extraer la sección con value='...'
         regex_pattern = r"value='(\{.*?\})'"
         match = re.search(regex_pattern, combined_response, re.DOTALL)
-
         if not match:
             print("No JSON object found in the response (regex match failed).")
             return ""
 
         raw_json_str = match.group(1)
 
-
-        # Reemplazos para normalizar triple backslashes y secuencias
+        # Replace certain escape sequences
         raw_json_str = raw_json_str.replace("\\\n", "\\n")
         raw_json_str = raw_json_str.replace("\\\t", "\\t")
 
-
-        # 1) Cambiamos comillas “inteligentes” por simples
-        #    (para evitar caracteres raros dentro de cadenas JSON)
+        # Replace "smart quotes"
         raw_json_str = raw_json_str.replace("‘", "'").replace("’", "'")
 
-        # 2) Convertimos \n y \t a literales de JSON
+        # Convert \n and \t to literal JSON sequences
         sanitized_json_str = raw_json_str.replace("\\n", "\\\\n").replace("\\t", "\\\\t")
 
-        # 3) Regex para backslashes sueltos que puedan generar escapes inválidos
-        #    En JSON válido, un backslash sólo puede preceder " b f n r t u \
-        #    Cualquier otra cosa produce "invalid \escape"
-        #    Este sub duplicará el backslash cuando no vaya seguido de
-        #    ["/\b\f\n\r\tu] o comillas
+        # Fix stray backslashes that aren't valid JSON escapes
         sanitized_json_str = re.sub(
-            r'\\(?=[^"\\/bfnrtu])',  # look for \ that isn't followed by a valid escape
+            r'\\(?=[^"\\/bfnrtu])',  # look for \ not followed by a valid escape
             r'\\\\',                # replace with double backslash
             sanitized_json_str
         )
@@ -188,29 +179,27 @@ class TextSeparator:
 
     def _parse_json(self, json_str: str):
         """
-        Intenta parsear la cadena JSON dada. Si falla, reporta el error.
+        Attempts to parse the JSON string. If it fails, returns (None, None).
         """
-
         try:
             parsed_json = json.loads(json_str)
             text_without_examples = parsed_json.get("text_without_examples", "")
             only_examples = parsed_json.get("only_examples", "")
             return text_without_examples, only_examples
 
-        except json.JSONDecodeError as e:
+        except json.JSONDecodeError:
             return None, None
 
     def _write_results(self, text_without_examples: str, only_examples):
         """
         Writes the extracted strings to the specified output files.
         """
-        with open(TEXT_WITHOUT_EXAMPLES_PATH, "w", encoding="utf-8") as f1:
+        with open(PATH_INSTRUCTIONS_NO_EXAMPLES, "w", encoding="utf-8") as f1:
             f1.write(text_without_examples)
 
-        with open(EXAMPLES_PATH, "w", encoding="utf-8") as f2:
+        with open(PATH_EXAMPLES_TXT, "w", encoding="utf-8") as f2:
             if isinstance(only_examples, list):
                 f2.write(json.dumps(only_examples, ensure_ascii=False, indent=2))
-
             else:
                 f2.write(str(only_examples))
 

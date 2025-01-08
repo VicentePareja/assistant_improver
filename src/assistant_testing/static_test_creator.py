@@ -1,6 +1,6 @@
 import json
 import csv
-from parametros import HUMAN_RESPONSE_COLUMN, QUESTION_COLUMN
+from parameters import COLUMN_HUMAN_ANSWER, COLUMN_QUESTION
 
 class StaticExamplesTestCreator:
     def __init__(self, input_test_file, output_test_file):
@@ -16,7 +16,7 @@ class StaticExamplesTestCreator:
         with open(self.output_test_file, "w", newline='', encoding="utf-8") as csv_file:
             writer = csv.writer(csv_file)
             # Write the headers
-            writer.writerow([QUESTION_COLUMN, HUMAN_RESPONSE_COLUMN])
+            writer.writerow([COLUMN_QUESTION, COLUMN_HUMAN_ANSWER])
             
             # Write each question-answer pair 4 times
             for entry in data:

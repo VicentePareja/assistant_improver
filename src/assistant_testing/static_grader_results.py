@@ -105,9 +105,9 @@ class RowProcessor:
                 if assistant_responses:
                     return assistant_responses[-1]  # Tomamos la última respuesta
                 else:
-                    return "No hubo respuesta del asistente."
+                    return 3
             else:
-                return "No hubo respuesta del asistente."
+                return 3
 
         except Exception as e:
             return f"Error al procesar la fila: {e}"

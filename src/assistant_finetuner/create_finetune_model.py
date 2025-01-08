@@ -9,7 +9,7 @@ class OpenAIFineTuner:
         self.api_key = api_key
         self.client = OpenAI(api_key=api_key)
 
-    def create_fine_tuning_job(self, training_file_id: str, model: str, suffix: str = None) -> dict:
+    def create_fine_tuning_job(self, training_file_id: str, model: str, suffix: str = None, n_epochs = 1) -> dict:
         """
         Create a fine-tuning job.
 
