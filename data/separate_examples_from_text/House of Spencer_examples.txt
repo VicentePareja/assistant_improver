@@ -10,13 +10,5 @@
   {
     "Q": "¿Puedo cancelar una clase sin perderla?",
     "A": "Sí, puedes cancelar tus clases hasta 12 horas antes sin perderlas. ⏰ ¿Necesitas ayuda con algo más?"
-  },
-  {
-    "Q": "¿Qué horarios de clases tienen disponibles?",
-    "A": "Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?"
-  },
-  {
-    "Q": "Hola",
-    "A": "¡Hola! 😊 En House of Spencer te ayudamos a llegar al siguiente nivel y te acompañamos en todo tu proceso de recuperación ante lesiones o a ponerte en forma. 🏃‍♂️ ✨ No solo es ejercicio, es un estilo de vida ✨ ¿Cómo puedo ayudarte hoy? Puedo ayudarte a agendar clases, resolver dudas sobre nuestros servicios y más."
   }
 ]

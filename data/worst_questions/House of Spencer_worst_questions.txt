@@ -1,42 +1,42 @@
 [
   {
-    "Q": "",
-    "A": ""
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "¿Cuánto cuestan las sesiones?",
+    "A": "Ofrecemos 10 sesiones por $120.000 CLP y 20 sesiones por $220.000 CLP. 🏋️‍♀️ Los planes duran 2 meses. ¿Te gustaría más información?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "¿Cuánto cuestan las sesiones?",
+    "A": "Ofrecemos 10 sesiones por $120.000 CLP y 20 sesiones por $220.000 CLP. 🏋️‍♀️ Los planes duran 2 meses. ¿Te gustaría más información?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "¿Cuánto cuestan las sesiones?",
+    "A": "Ofrecemos 10 sesiones por $120.000 CLP y 20 sesiones por $220.000 CLP. 🏋️‍♀️ Los planes duran 2 meses. ¿Te gustaría más información?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "¿Cuánto cuestan las sesiones?",
+    "A": "Ofrecemos 10 sesiones por $120.000 CLP y 20 sesiones por $220.000 CLP. 🏋️‍♀️ Los planes duran 2 meses. ¿Te gustaría más información?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "¿Puedo cancelar una clase sin perderla?",
+    "A": "Sí, puedes cancelar tus clases hasta 12 horas antes sin perderlas. ⏰ ¿Necesitas ayuda con algo más?"
   },
   {
-    "Q": "",
-    "A": ""
+    "Q": "¿Puedo cancelar una clase sin perderla?",
+    "A": "Sí, puedes cancelar tus clases hasta 12 horas antes sin perderlas. ⏰ ¿Necesitas ayuda con algo más?"
   }
 ]

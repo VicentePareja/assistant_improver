@@ -16,7 +16,7 @@ from src.assistant_testing.static_test_creator import StaticExamplesTestCreator
 from src.assistant_testing.static_assistant_tester import StaticAssistantsRunner
 from src.assistant_testing.static_grader_results import FileManagerGrader
 
-# --- Import parameters from your new parametros.py ---
+# --- Import parameters from your parameters.py ---
 from parameters import (
     # Assistant/model info
     ASSISTANT_NAME,
@@ -38,18 +38,28 @@ from parameters import (
     COLUMN_QUESTION,
     COLUMN_HUMAN_ANSWER,
 
-    # Paths
+    # Instructions/Examples
     PATH_INSTRUCTIONS_TXT,
     PATH_INSTRUCTIONS_NO_EXAMPLES,
     PATH_EXAMPLES_TXT,
+
+    # Assistant IDs
     PATH_ASSISTANTS_IDS_TXT,
     PATH_ASSISTANT_ID_FINE_TUNED_TXT,
     PATH_INSTRUCTIONS_EVALUATOR_TXT,
     PATH_EVALUATOR_ID_TXT,
+
+    # Test inputs
     PATH_TEST_EXAMPLES_CSV,
-    PATH_TEST_RESULTS_BASE_CSV,
-    PATH_TEST_RESULTS_FINE_TUNED_CSV,
-    PATH_TEST_RESULTS_UNIFIED_CSV,
+
+    # Separate answers & grades
+    PATH_BASE_ANSWERS_CSV,
+    PATH_BASE_GRADES_CSV,
+    PATH_FINE_TUNED_ANSWERS_CSV,
+    PATH_FINE_TUNED_GRADES_CSV,
+    PATH_UNIFIED_RESULTS_CSV,
+
+    # Worst Qs
     PATH_WORST_QUESTIONS_TXT,
     PATH_WORST_QUESTIONS_JSONL,
 )
@@ -88,11 +98,15 @@ class Main:
         self.path_instructions_evaluator_txt = PATH_INSTRUCTIONS_EVALUATOR_TXT
         self.path_evaluator_id_txt = PATH_EVALUATOR_ID_TXT
 
-        # Test + results
+        # Test sets
         self.path_test_examples_csv = PATH_TEST_EXAMPLES_CSV
-        self.path_test_results_base_csv = PATH_TEST_RESULTS_BASE_CSV
-        self.path_test_results_fine_tuned_csv = PATH_TEST_RESULTS_FINE_TUNED_CSV
-        self.path_test_results_unified_csv = PATH_TEST_RESULTS_UNIFIED_CSV
+
+        # Separate answers & grades
+        self.path_base_answers_csv = PATH_BASE_ANSWERS_CSV
+        self.path_base_grades_csv = PATH_BASE_GRADES_CSV
+        self.path_fine_tuned_answers_csv = PATH_FINE_TUNED_ANSWERS_CSV
+        self.path_fine_tuned_grades_csv = PATH_FINE_TUNED_GRADES_CSV
+        self.path_unified_results_csv = PATH_UNIFIED_RESULTS_CSV
 
         # Worst questions
         self.path_worst_questions_txt = PATH_WORST_QUESTIONS_TXT
@@ -118,18 +132,12 @@ class Main:
     # 1) CREATE INSTRUCTIONS & SEPARATE EXAMPLES
     # -------------------------------------------------------------------------
     def find_doc_id(self):
-        """
-        Find the Google Doc ID by the assistant's name.
-        """
         finder = AssistantDocFinder()
         _, gdocs_address = finder.get_doc_id_by_assistant_name(self.assistant_name)
         self.document_id = gdocs_address
         print(f"Document ID for '{self.assistant_name}' found: {self.document_id}")
 
     def import_text_from_google_doc(self):
-        """
-        Import the text from the doc ID into a local TXT file.
-        """
         importer = DocumentImporter(
             self.service_account_path,
             self.document_id,
@@ -139,12 +147,6 @@ class Main:
         print("Text from Google Doc imported successfully.")
 
     def separate_text(self):
-        """
-        Use a specialized assistant to separate text into instructions and examples.
-        Outputs:
-            - PATH_INSTRUCTIONS_NO_EXAMPLES
-            - PATH_EXAMPLES_TXT
-        """
         separator_runner = TextSeparatorRunner(
             api_key=self.openai_api_key,
             assistant_id=self.separator_assistant_id
@@ -153,9 +155,6 @@ class Main:
         print("Text separation completed: instructions vs. examples.")
 
     def create_instructions(self):
-        """
-        Combined step to create instructions and separate the examples.
-        """
         self.find_doc_id()
         self.import_text_from_google_doc()
         self.separate_text()
@@ -164,9 +163,6 @@ class Main:
     # 2) CREATE THE TEST WITH QUESTIONS & HUMAN ANSWERS
     # -------------------------------------------------------------------------
     def create_static_tests(self):
-        """
-        Take the newly separated examples and turn them into a CSV test file.
-        """
         self.static_test_creator.create_test()
         print(f"Static test CSV created at: {self.path_test_examples_csv}")
 
@@ -174,9 +170,6 @@ class Main:
     # 3) CREATE BASE ASSISTANT
     # -------------------------------------------------------------------------
     def create_base_assistant(self):
-        """
-        Read final instructions from local file and create a base assistant.
-        """
         assistant_creator = AssistantCreator(
             api_key=self.openai_api_key,
             instructions_path=self.path_instructions_txt
@@ -188,44 +181,34 @@ class Main:
             temperature=self.base_temperature,
             top_p=self.base_top_p
         )
-        self.save_assistant_id(
+        self._save_assistant_id(
             self.base_assistant.name,
             self.base_assistant.id,
             self.path_assistants_ids_txt
         )
         print(f"Base assistant created: {self.base_assistant.name}")
 
-    def save_assistant_id(self, assistant_name, new_assistant_id, path):
-        """
-        Append the newly created assistant's name and ID to a local file.
-        """
+    def _save_assistant_id(self, assistant_name, new_assistant_id, path):
         with open(path, "a", encoding="utf-8") as f:
             f.write(f"{assistant_name, new_assistant_id}\n")
 
     # -------------------------------------------------------------------------
-    # 4) RECEIVE & STORE MACHINE ANSWERS (Base Assistant) 
+    # 4) GET BASE ANSWERS (store them in PATH_BASE_ANSWERS_CSV)
     # -------------------------------------------------------------------------
     def get_base_assistant_answers(self):
-        """
-        Run the static test using the base assistant. 
-        The results (answers) get stored in PATH_TEST_RESULTS_BASE_CSV.
-        """
         runner = StaticAssistantsRunner(
             openai_api_key=self.openai_api_key,
             txt_file_path=self.path_assistants_ids_txt,
             csv_file_path=self.path_test_examples_csv,
-            output_csv_path=self.path_test_results_base_csv
+            output_csv_path=self.path_base_answers_csv
         )
         runner.run_all()
-        print(f"Base assistant answers stored in: {self.path_test_results_base_csv}")
+        print(f"Base assistant answers stored in: {self.path_base_answers_csv}")
 
     # -------------------------------------------------------------------------
     # 5) CREATE EVALUATOR ASSISTANT
     # -------------------------------------------------------------------------
     def create_evaluator_assistant(self):
-        """
-        Create a specialized assistant that grades or evaluates responses.
-        """
         assistant_creator = AssistantCreator(
             api_key=self.openai_api_key,
             instructions_path=self.path_instructions_evaluator_txt
@@ -237,44 +220,14 @@ class Main:
             temperature=self.evaluator_temperature,
             top_p=self.evaluator_top_p
         )
-        self.save_assistant_id(
+        self._save_assistant_id(
             self.evaluator_assistant.name,
             self.evaluator_assistant.id,
             self.path_evaluator_id_txt
         )
         print(f"Evaluator assistant created: {self.evaluator_assistant.name}")
 
-    # -------------------------------------------------------------------------
-    # 6) EVALUATE (GRADE) EACH RESPONSE OF BASE ASSISTANT
-    # -------------------------------------------------------------------------
-    def grade_base_assistant_responses(self):
-        """
-        Use the evaluator assistant to grade the base assistant's responses 
-        from the CSV. Adds a new column with the grade (e.g. 'ASSISTANT_NAME_base_grade').
-        """
-        evaluator_id = self._extract_assistant_id_from_file(self.path_evaluator_id_txt)
-        grader = FileManagerGrader(
-            openai_api_key=self.openai_api_key,
-            assistant_id=evaluator_id,
-            csv_input_path=self.path_test_results_base_csv
-        )
-        # The name of the column that has the base assistant's answer:
-        machine_answer_column = f"{self.assistant_name}_{self.base_model_suffix}"
-
-        # Grader will add a 'grade' column in the same file by default
-        grader.run(
-            question_column=COLUMN_QUESTION,
-            human_answer_column=COLUMN_HUMAN_ANSWER,
-            machine_answer_column=machine_answer_column,
-            output_csv_path=self.path_test_results_base_csv
-        )
-        print("Base assistant responses graded. Results updated in the same CSV.")
-
     def _extract_assistant_id_from_file(self, path):
-        """
-        Utility to parse the assistant ID from the local text file 
-        (lines like: ('AssistantName', 'ID-XXXXXX')).
-        """
         pattern = re.compile(r"\('([^']+)',\s*'([^']+)'\)")
         assistant_id = None
         if os.path.exists(path):
@@ -288,65 +241,113 @@ class Main:
         return assistant_id
 
     # -------------------------------------------------------------------------
+    # 6) GRADE BASE ANSWERS => store grades in PATH_BASE_GRADES_CSV
+    # -------------------------------------------------------------------------
+    def grade_base_assistant_responses(self):
+        evaluator_id = self._extract_assistant_id_from_file(self.path_evaluator_id_txt)
+        grader = FileManagerGrader(
+            openai_api_key=self.openai_api_key,
+            assistant_id=evaluator_id,
+            csv_input_path=self.path_base_answers_csv
+        )
+        base_answer_col = f"{self.assistant_name}_{self.base_model_suffix}"
+        grader.run(
+            question_column=COLUMN_QUESTION,
+            human_answer_column=COLUMN_HUMAN_ANSWER,
+            machine_answer_column=base_answer_col,
+            output_csv_path=self.path_base_grades_csv
+        )
+        print(f"Base assistant responses graded. Results saved in: {self.path_base_grades_csv}")
+
+    # -------------------------------------------------------------------------
     # 7) GATHER WORST QUESTIONS (lowest grades)
     # -------------------------------------------------------------------------
-    def gather_worst_questions(self, worst_n=None):
+    def gather_worst_indices(self, worst_n=None):
         """
-        Sort the test results by the grade assigned to the base assistant 
-        (lowest grades first) and pick the N worst.
+        Return the row indices of the 'worst' (lowest-grade) examples from path_base_grades_csv.
         """
         if worst_n is None:
             worst_n = self.num_worst_examples
 
-        if not os.path.exists(self.path_test_results_base_csv):
-            print(f"No base test results found at {self.path_test_results_base_csv}.")
+        if not os.path.exists(self.path_base_grades_csv):
+            print(f"No base grades found at {self.path_base_grades_csv}.")
             return []
 
-        worst_questions = []
-        with open(self.path_test_results_base_csv, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            # If the grader's numeric column is 'grade', we parse it.
-            sorted_rows = sorted(reader, key=lambda x: float(x.get('grade', 0)))
-            worst_questions = sorted_rows[:worst_n]
+        # We'll read the entire grades CSV
+        with open(self.path_base_grades_csv, 'r', encoding='utf-8') as f:
+            reader = list(csv.DictReader(f))  # materialize in list
 
-        print(f"Gathered {len(worst_questions)} worst questions.")
-        return worst_questions
-
-    # -------------------------------------------------------------------------
-    # 8) & 9) CREATE JSONL + UPLOAD TO OPENAI & 10) CREATE FINE-TUNED MODEL
-    # -------------------------------------------------------------------------
-    def fine_tune_new_assistant(self, worst_questions):
-        """
-        Fine-tune a new model using the worst questions:
-          1) Save worst Q&A to a .txt file
-          2) Convert to JSONL
-          3) Upload to OpenAI
-          4) Create fine-tuning job & wait
-          5) Create fine-tuned assistant
-        """
-        if not worst_questions:
-            print("No worst questions found. Fine-tuning skipped.")
-            return
-
-        # 1) Save worst questions to .txt
-        self._save_worst_questions_as_json(worst_questions, self.path_worst_questions_txt)
-
-        # 2) Convert that .txt to JSONL
-        self._convert_txt_to_jsonl(
-            input_txt=self.path_worst_questions_txt,
-            output_jsonl=self.path_worst_questions_jsonl
+        # Sort by 'grade' ascending (lowest is worst)
+        # Keep track of each row's index
+        indexed_rows = list(enumerate(reader))  # (idx, row_dict)
+        sorted_indexed_rows = sorted(
+            indexed_rows, 
+            key=lambda x: float(x[1].get('grade', 0))
         )
 
-        # 3) Upload to OpenAI
+        # Take the first 'worst_n' items
+        worst_indexed = sorted_indexed_rows[:worst_n]
+
+        # Return just the indices
+        worst_indices = [item[0] for item in worst_indexed]
+        print(f"Worst {len(worst_indices)} row indices: {worst_indices}")
+        return worst_indices
+
+    def create_worst_questions_file(self, worst_indices):
+        """
+        Reads path_base_answers_csv, extracts question/human_answer for each 
+        row index in worst_indices, and saves them as a JSON array:
+        [
+          {"Q": "...", "A": "..."},
+          {"Q": "...", "A": "..."}
+        ]
+        in path_worst_questions_txt.
+        """
+        if not worst_indices:
+            print("No worst indices found. Skipping creation of worst questions file.")
+            return
+
+        # Read the base answers CSV
+        with open(self.path_base_answers_csv, 'r', encoding='utf-8') as f_ans:
+            ans_rows = list(csv.DictReader(f_ans))
+
+        data_list = []
+        for idx in worst_indices:
+            # If idx is within range:
+            if 0 <= idx < len(ans_rows):
+                row = ans_rows[idx]
+                question = row.get(COLUMN_QUESTION, "").strip()
+                answer = row.get(COLUMN_HUMAN_ANSWER, "").strip()
+                data_list.append({"Q": question, "A": answer})
+
+        # Write out to path_worst_questions_txt
+        with open(self.path_worst_questions_txt, "w", encoding="utf-8") as f_out:
+            json.dump(data_list, f_out, ensure_ascii=False, indent=2)
+
+        print(f"Worst questions saved in JSON format to {self.path_worst_questions_txt}")
+
+    # -------------------------------------------------------------------------
+    # 8, 9, 10) Convert .txt to .jsonl, upload, fine-tune
+    # -------------------------------------------------------------------------
+    def convert_worst_txt_to_jsonl(self):
+        converter = TxtToJsonlConverter(
+            input_examples_txt_path=self.path_worst_questions_txt,
+            input_prompt_txt=self.path_instructions_no_examples,
+            output_jsonl_path=self.path_worst_questions_jsonl
+        )
+        converter.convert()
+        print(f"Converted {self.path_worst_questions_txt} to {self.path_worst_questions_jsonl}")
+
+    def upload_worst_jsonl(self):
         uploader = OpenAIFileUploader(api_key=self.openai_api_key)
-        upload_response = uploader.upload_file(
+        response = uploader.upload_file(
             file_path=self.path_worst_questions_jsonl,
             purpose="fine-tune"
         )
-        fine_tune_file_id = upload_response.id
         print("Worst questions JSONL uploaded successfully.")
+        return response.id
 
-        # 4) Create fine-tuning job
+    def create_fine_tuning_job(self, fine_tune_file_id):
         fine_tune_job_response = self.fine_tuner.create_fine_tuning_job(
             training_file_id=fine_tune_file_id,
             model=self.base_model_name,
@@ -354,9 +355,9 @@ class Main:
         )
         fine_tune_job_id = fine_tune_job_response.id
         self.fine_tune_model = self.fine_tuner.monitor_fine_tuning_job(fine_tune_job_id)
-        print(f"Fine-tuned model ready: {self.fine_tune_model}")
+        print(f"Fine-tuned model is ready: {self.fine_tune_model}")
 
-        # 5) Create the fine-tuned assistant
+    def create_fine_tuned_assistant(self):
         assistant_creator = AssistantCreator(
             api_key=self.openai_api_key,
             instructions_path=self.path_instructions_txt
@@ -368,211 +369,185 @@ class Main:
             temperature=self.base_temperature,
             top_p=self.base_top_p
         )
-        self.save_assistant_id(
+        self._save_assistant_id(
             self.new_fine_tuned_assistant.name,
             self.new_fine_tuned_assistant.id,
             self.path_assistant_id_fine_tuned_txt
         )
         print(f"Fine-tuned assistant created: {self.new_fine_tuned_assistant.name}")
 
-    def _save_worst_questions_as_json(self, worst_questions, txt_file_path):
+    def fine_tune_new_assistant_workflow(self):
         """
-        Save the worst questions to a file as a JSON array: [ {"Q":"...", "A":"..."} ]
+        Helper method that uses the steps:
+         - convert_worst_txt_to_jsonl
+         - upload_worst_jsonl
+         - create_fine_tuning_job
+         - create_fine_tuned_assistant
         """
-        data_list = []
-        for row in worst_questions:
-            question = row.get(COLUMN_QUESTION, "").strip()
-            answer = row.get(COLUMN_HUMAN_ANSWER, "").strip()
-            data_list.append({"Q": question, "A": answer})
-
-        with open(txt_file_path, "w", encoding="utf-8") as f:
-            json.dump(data_list, f, ensure_ascii=False, indent=2)
-        print(f"Saved worst questions in JSON format to {txt_file_path}.")
-
-    def _convert_txt_to_jsonl(self, input_txt, output_jsonl):
-        """
-        Convert the textual Q&A file into a JSONL, using the same structure
-        that your TxtToJsonlConverter expects.
-        """
-        converter = TxtToJsonlConverter(
-            input_examples_txt_path=input_txt,
-            input_prompt_txt=self.path_instructions_no_examples,  # or any prompt if needed
-            output_jsonl_path=output_jsonl
-        )
-        converter.convert()
-        print(f"Converted {input_txt} to {output_jsonl}")
+        self.convert_worst_txt_to_jsonl()
+        file_id = self.upload_worst_jsonl()
+        self.create_fine_tuning_job(file_id)
+        self.create_fine_tuned_assistant()
 
     # -------------------------------------------------------------------------
-    # 11) RECEIVE THE ANSWERS OF THE FINE-TUNED MODEL & STORE THEM
+    # 11) GET FINE-TUNED ANSWERS => store them in PATH_FINE_TUNED_ANSWERS_CSV
     # -------------------------------------------------------------------------
     def get_fine_tuned_assistant_answers(self):
-        """
-        Run the static test using the new fine-tuned assistant.
-        Store answers in PATH_TEST_RESULTS_FINE_TUNED_CSV.
-        """
         runner = StaticAssistantsRunner(
             openai_api_key=self.openai_api_key,
             txt_file_path=self.path_assistant_id_fine_tuned_txt,
             csv_file_path=self.path_test_examples_csv,
-            output_csv_path=self.path_test_results_fine_tuned_csv
+            output_csv_path=self.path_fine_tuned_answers_csv
         )
         runner.run_all()
-        print(f"Fine-tuned assistant answers stored in: {self.path_test_results_fine_tuned_csv}")
+        print(f"Fine-tuned assistant answers stored in: {self.path_fine_tuned_answers_csv}")
 
     # -------------------------------------------------------------------------
-    # 12) EVALUATE (GRADE) FINE-TUNED ANSWERS
+    # 12) GRADE FINE-TUNED ANSWERS => store in PATH_FINE_TUNED_GRADES_CSV
     # -------------------------------------------------------------------------
     def grade_fine_tuned_assistant_responses(self):
-        """
-        Use the same evaluator assistant to grade the fine-tuned assistant's responses.
-        """
         evaluator_id = self._extract_assistant_id_from_file(self.path_evaluator_id_txt)
         grader = FileManagerGrader(
             openai_api_key=self.openai_api_key,
             assistant_id=evaluator_id,
-            csv_input_path=self.path_test_results_fine_tuned_csv
+            csv_input_path=self.path_fine_tuned_answers_csv
         )
-        machine_answer_column = f"{self.assistant_name}_{self.fine_tuned_model_suffix}"
+        ft_answer_col = f"{self.assistant_name}_{self.fine_tuned_model_suffix}"
         grader.run(
             question_column=COLUMN_QUESTION,
             human_answer_column=COLUMN_HUMAN_ANSWER,
-            machine_answer_column=machine_answer_column,
-            output_csv_path=self.path_test_results_fine_tuned_csv
+            machine_answer_column=ft_answer_col,
+            output_csv_path=self.path_fine_tuned_grades_csv
         )
-        print("Fine-tuned assistant responses graded. Results updated in the CSV.")
+        print(f"Fine-tuned assistant responses graded. Results in: {self.path_fine_tuned_grades_csv}")
 
     # -------------------------------------------------------------------------
-    # 13) MAKE A UNIFIED CSV
+    # 13) UNIFY RESULTS
     # -------------------------------------------------------------------------
     def unify_results_in_single_csv(self):
         """
-        Produce a CSV with columns:
-          question, human_answer,
-          ASSISTANT_NAME_base_answer, ASSISTANT_NAME_base_grade,
-          ASSISTANT_NAME_fine_tuned_answer, ASSISTANT_NAME_fine_tuned_grade
-        by merging base vs. fine-tuned results.
+        Merge these 4 files by row index:
+        - base answers (PATH_BASE_ANSWERS_CSV)
+        - base grades (PATH_BASE_GRADES_CSV)
+        - fine-tuned answers (PATH_FINE_TUNED_ANSWERS_CSV)
+        - fine-tuned grades (PATH_FINE_TUNED_GRADES_CSV)
+        into PATH_UNIFIED_RESULTS_CSV.
         """
-        base_file = self.path_test_results_base_csv
-        ft_file = self.path_test_results_fine_tuned_csv
-        out_file = self.path_test_results_unified_csv
+        out_file = self.path_unified_results_csv
 
-        if not os.path.exists(base_file):
-            print(f"No base results at {base_file}")
-            return
-        if not os.path.exists(ft_file):
-            print(f"No fine-tuned results at {ft_file}")
-            return
+        # 1. Ensure all files exist
+        required_files = [
+            self.path_base_answers_csv,
+            self.path_base_grades_csv,
+            self.path_fine_tuned_answers_csv,
+            self.path_fine_tuned_grades_csv,
+        ]
+        for file_path in required_files:
+            if not os.path.exists(file_path):
+                print(f"Missing file: {file_path}")
+                return
 
-        # Read base results
-        with open(base_file, 'r', encoding='utf-8') as f_base:
-            base_reader = csv.DictReader(f_base)
-            base_rows = list(base_reader)
+        # 2. Read each file into a list of rows
+        with open(self.path_base_answers_csv, "r", encoding="utf-8") as f:
+            base_answers = list(csv.DictReader(f))
 
-        # Read fine-tuned
-        with open(ft_file, 'r', encoding='utf-8') as f_ft:
-            ft_reader = csv.DictReader(f_ft)
-            ft_rows = list(ft_reader)
-            # Map by question
-            ft_map = {row[COLUMN_QUESTION]: row for row in ft_rows}
+        with open(self.path_base_grades_csv, "r", encoding="utf-8") as f:
+            base_grades = list(csv.DictReader(f))
 
-        # We want final columns:
-        # question, human_answer, 
-        #   ASSISTANT_NAME_base_answer, ASSISTANT_NAME_base_grade,
-        #   ASSISTANT_NAME_fine_tuned_answer, ASSISTANT_NAME_fine_tuned_grade
-        base_answer_col = f"{self.assistant_name}_{self.base_model_suffix}"
-        base_grade_col = "grade"
-        ft_answer_col = f"{self.assistant_name}_{self.fine_tuned_model_suffix}"
-        ft_grade_col = "grade"
+        with open(self.path_fine_tuned_answers_csv, "r", encoding="utf-8") as f:
+            fine_tuned_answers = list(csv.DictReader(f))
 
-        final_cols = [
-            COLUMN_QUESTION,
-            COLUMN_HUMAN_ANSWER,
+        with open(self.path_fine_tuned_grades_csv, "r", encoding="utf-8") as f:
+            fine_tuned_grades = list(csv.DictReader(f))
+
+        # 3. Combine rows by index
+        combined_rows = []
+        for idx in range(len(base_answers)):
+            base_row = base_answers[idx] if idx < len(base_answers) else {}
+            base_grade_row = base_grades[idx] if idx < len(base_grades) else {}
+            fine_tuned_row = fine_tuned_answers[idx] if idx < len(fine_tuned_answers) else {}
+            fine_tuned_grade_row = fine_tuned_grades[idx] if idx < len(fine_tuned_grades) else {}
+
+            combined_rows.append({
+                "question": base_row.get(COLUMN_QUESTION, ""),
+                "human_response": base_row.get(COLUMN_HUMAN_ANSWER, ""),
+                f"{self.assistant_name}_base_answer": base_row.get(f"{self.assistant_name}_base", ""),
+                f"{self.assistant_name}_base_grade": base_grade_row.get("grade", ""),
+                f"{self.assistant_name}_fine_tuned_answer": fine_tuned_row.get(f"{self.assistant_name}_fine_tuned_with_worst", ""),
+                f"{self.assistant_name}_fine_tuned_grade": fine_tuned_grade_row.get("grade", ""),
+            })
+
+        # 4. Write the unified CSV
+        fieldnames = [
+            "question",
+            "human_response",
             f"{self.assistant_name}_base_answer",
             f"{self.assistant_name}_base_grade",
             f"{self.assistant_name}_fine_tuned_answer",
             f"{self.assistant_name}_fine_tuned_grade",
         ]
-
-        with open(out_file, 'w', newline='', encoding='utf-8') as out:
-            writer = csv.DictWriter(out, fieldnames=final_cols)
+        with open(out_file, "w", newline="", encoding="utf-8") as f_out:
+            writer = csv.DictWriter(f_out, fieldnames=fieldnames)
             writer.writeheader()
-
-            for base_row in base_rows:
-                q = base_row.get(COLUMN_QUESTION, "")
-                human_ans = base_row.get(COLUMN_HUMAN_ANSWER, "")
-                base_ans = base_row.get(base_answer_col, "")
-                base_grade = base_row.get(base_grade_col, "")
-
-                row_out = {
-                    COLUMN_QUESTION: q,
-                    COLUMN_HUMAN_ANSWER: human_ans,
-                    f"{self.assistant_name}_base_answer": base_ans,
-                    f"{self.assistant_name}_base_grade": base_grade,
-                    f"{self.assistant_name}_fine_tuned_answer": "",
-                    f"{self.assistant_name}_fine_tuned_grade": "",
-                }
-                # Merge the fine-tuned row if exists
-                ft_match = ft_map.get(q)
-                if ft_match:
-                    row_out[f"{self.assistant_name}_fine_tuned_answer"] = ft_match.get(ft_answer_col, "")
-                    row_out[f"{self.assistant_name}_fine_tuned_grade"] = ft_match.get(ft_grade_col, "")
-
-                writer.writerow(row_out)
+            writer.writerows(combined_rows)
 
         print(f"Unified CSV created at: {out_file}")
 
     # -------------------------------------------------------------------------
-    # RUN: MAIN WORKFLOW 
+    # RUN: MAIN WORKFLOW
     # -------------------------------------------------------------------------
     def run(self):
         """
         Steps:
-          1) Create instructions & separate examples
-          2) Create static test
-          3) Create base assistant
-          4) Get base answers
-          5) Create evaluator
-          6) Grade base answers
-          7) Gather worst questions
-          8) Convert to JSONL & Upload
-          9) Fine-tune model
-          10) Create fine-tuned assistant
-          11) Get fine-tuned answers
-          12) Grade fine-tuned answers
-          13) Unify into CSV
+          1) create_instructions()
+          2) create_static_tests()
+          3) create_base_assistant()
+          4) get_base_assistant_answers()
+          5) create_evaluator_assistant()
+          6) grade_base_assistant_responses()
+          7) gather worst questions indices + create worst questions file
+          8) convert worst txt to JSONL
+          9) upload JSONL
+          10) create fine-tuned model
+          11) get fine-tuned answers
+          12) grade fine-tuned answers
+          13) unify CSV
         """
-        # 1) create instructions & separate examples
-        #self.create_instructions()
+                # 1) Create instructions & separate examples
+        # self.create_instructions()
 
-        # 2) create test CSV
+        # 2) Create the test CSV
         #self.create_static_tests()
 
-        # 3) create base assistant
+        # 3) Create base assistant
         #self.create_base_assistant()
 
-        # 4) get base answers
-        self.get_base_assistant_answers()
+        # 4) Get base answers
+        #self.get_base_assistant_answers()
 
-        # 5) create evaluator
+        # 5) Create evaluator
         #self.create_evaluator_assistant()
 
-        # 6) grade base answers
+        # 6) Grade base answers
         #self.grade_base_assistant_responses()
 
-        # 7) gather worst questions
-        #worst_questions = self.gather_worst_questions()
+        # 7) Gather worst questions
+        #worst_questions = self.gather_worst_indices()
+        #self.create_worst_questions_file(worst_questions)
 
-        # 8,9,10) fine-tune model & create fine-tuned assistant
-        #self.fine_tune_new_assistant(worst_questions)
+        # 8,9,10) Fine-tune model + create fine-tuned assistant
+        #self.fine_tune_new_assistant_workflow()
 
-        # 11) get fine-tuned answers
+        # 11) Get fine-tuned answers
         #self.get_fine_tuned_assistant_answers()
 
-        # 12) grade fine-tuned answers
+        # 12) Grade fine-tuned answers
         #self.grade_fine_tuned_assistant_responses()
 
-        # 13) unify CSV
-        #self.unify_results_in_single_csv()
+        # 13) Unify results
+        self.unify_results_in_single_csv()
+
+        print("Done!")
 
 
 if __name__ == "__main__":
