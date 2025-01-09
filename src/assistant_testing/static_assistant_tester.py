@@ -9,10 +9,6 @@ from openai import OpenAI
 from tqdm import tqdm
 from parameters import COLUMN_HUMAN_ANSWER, COLUMN_QUESTION
 
-# Optional: If you need streaming event handlers, you can still define them,
-# but for this example we’ll just poll for run completion below.
-from openai import AssistantEventHandler
-
 
 class StaticAssistantsRunner:
     """
@@ -181,57 +177,59 @@ class StaticAssistantsRunner:
 
         print(f"\n=== Polling {total_runs} runs until they complete ===\n")
 
-        # We will do a naive polling approach:
-        # while not all in a terminal state, sleep, poll again.
-        while completed_count < total_runs:
-            completed_count = 0
-            for key in all_keys:
-                asst_name, q_idx = key
-                run_id = self.run_map[key]
-                # If we never successfully created the run, skip
-                if run_id is None:
-                    # Mark as completed (error)
-                    completed_count += 1
-                    if (key not in self.answers_map):
-                        self.answers_map[key] = "Error: Run not created"
-                    continue
-
-                # If we already have an answer, it means it's done or failed
-                if key in self.answers_map:
-                    completed_count += 1
-                    continue
-
-                # Otherwise, poll the run object
-                try:
-                    run_obj = client.beta.threads.runs.retrieve(thread_id=self.thread_map[q_idx], run_id=run_id)
-                    status = run_obj.status
-
-                    if status in (
-                        "completed",
-                        "failed",
-                        "cancelled",
-                        "expired"
-                    ):
-                        # Mark as done
+        # Create a progress bar
+        with tqdm(total=total_runs, desc="Polling runs", unit="run") as pbar:
+            while completed_count < total_runs:
+                completed_count = 0
+                for key in all_keys:
+                    asst_name, q_idx = key
+                    run_id = self.run_map[key]
+                    # If we never successfully created the run, skip
+                    if run_id is None:
+                        # Mark as completed (error)
                         completed_count += 1
+                        if (key not in self.answers_map):
+                            self.answers_map[key] = "Error: Run not created"
+                        continue
 
-                        if status == "completed":
-                            # Step 6: get final assistant message
-                            answer_text = self._get_final_assistant_message(run_obj, q_idx)
-                            self.answers_map[key] = answer_text
-                        else:
-                            # For other terminal statuses, store status as "answer"
-                            self.answers_map[key] = f"Run ended with status={status}"
-                except Exception as e:
-                    # Mark as done with an error
-                    completed_count += 1
-                    self.answers_map[key] = f"Error polling run {run_id}: {e}"
+                    # If we already have an answer, it means it's done or failed
+                    if key in self.answers_map:
+                        completed_count += 1
+                        continue
 
-            # If not done, sleep
-            if completed_count < total_runs:
-                time.sleep(poll_interval)
+                    # Otherwise, poll the run object
+                    try:
+                        run_obj = client.beta.threads.runs.retrieve(thread_id=self.thread_map[q_idx], run_id=run_id)
+                        status = run_obj.status
 
-        print("All runs reached a terminal state.")
+                        if status in (
+                            "completed",
+                            "failed",
+                            "cancelled",
+                            "expired"
+                        ):
+                            # Mark as done
+                            completed_count += 1
+                            pbar.update(1)  # Update the progress bar
+
+                            if status == "completed":
+                                # Step 6: get final assistant message
+                                answer_text = self._get_final_assistant_message(run_obj, q_idx)
+                                self.answers_map[key] = answer_text
+                            else:
+                                # For other terminal statuses, store status as "answer"
+                                self.answers_map[key] = f"Run ended with status={status}"
+                    except Exception as e:
+                        # Mark as done with an error
+                        completed_count += 1
+                        self.answers_map[key] = f"Error polling run {run_id}: {e}"
+
+                # If not done, sleep
+                if completed_count < total_runs:
+                    time.sleep(poll_interval)
+
+            print("\nAll runs reached a terminal state.")
+
 
     def _get_final_assistant_message(self, run_obj, q_idx: int) -> str:
         """
@@ -309,14 +307,17 @@ class StaticAssistantsRunner:
     def run_all(self):
         """
         Master flow that does steps 1..7:
-          1) Load assistants
-          2) Load Q&A
-          3) Create a thread for each question
-          4) Post the question as a user message
-          5) Create a run for each (assistant, thread)
-          6) Poll until runs are completed, store final answers
-          7) Write results to CSV
+        1) Load assistants
+        2) Load Q&A
+        3) Create a thread for each question
+        4) Post the question as a user message
+        5) Create a run for each (assistant, thread)
+        6) Poll until runs are completed, store final answers
+        7) Write results to CSV
         """
+        # Record start time
+        start_time = time.time()
+
         # 1) load assistants
         self.load_assistants()
         # 2) load Q&A
@@ -337,6 +338,12 @@ class StaticAssistantsRunner:
 
         # 7) Write everything to CSV
         self.write_results_to_csv()
+
+        # Record end time and calculate total duration
+        end_time = time.time()
+        total_time = end_time - start_time
+        print(f"\nTotal testing time: {total_time:.2f} seconds")
+
 
 
 if __name__ == "__main__":
