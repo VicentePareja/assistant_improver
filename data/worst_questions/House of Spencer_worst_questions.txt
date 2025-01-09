@@ -1,0 +1,78 @@
+[
+  {
+    "Q": "¿Qué horarios de clases tienen disponibles?",
+    "A": "Tenemos clases de lunes a viernes en la mañana, mediodía y tarde, y los sábados en la mañana. 📅 ¿Te gustaría saber los horarios específicos?"
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Hola! 😊 En House of Spencer te ayudamos a llegar al siguiente nivel y te acompañamos en todo tu proceso de recuperación ante lesiones o a ponerte en forma. 🏃‍♂️ ✨ No solo es ejercicio, es un estilo de vida ✨ ¿Cómo puedo ayudarte hoy? Puedo ayudarte a agendar clases, resolver dudas sobre nuestros servicios y más."
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Hola! 😊 En House of Spencer te ayudamos a llegar al siguiente nivel y te acompañamos en todo tu proceso de recuperación ante lesiones o a ponerte en forma. 🏃‍♂️ ✨ No solo es ejercicio, es un estilo de vida ✨ ¿Cómo puedo ayudarte hoy? Puedo ayudarte a agendar clases, resolver dudas sobre nuestros servicios y más."
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Hola! 😊 En House of Spencer te ayudamos a llegar al siguiente nivel y te acompañamos en todo tu proceso de recuperación ante lesiones o a ponerte en forma. 🏃‍♂️ ✨ No solo es ejercicio, es un estilo de vida ✨ ¿Cómo puedo ayudarte hoy? Puedo ayudarte a agendar clases, resolver dudas sobre nuestros servicios y más."
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Hola! 😊 En House of Spencer te ayudamos a llegar al siguiente nivel y te acompañamos en todo tu proceso de recuperación ante lesiones o a ponerte en forma. 🏃‍♂️ ✨ No solo es ejercicio, es un estilo de vida ✨ ¿Cómo puedo ayudarte hoy? Puedo ayudarte a agendar clases, resolver dudas sobre nuestros servicios y más."
+  },
+  {
+    "Q": "Hola, ¿son solo clases o se puede ir a entrenar por mi cuenta?",
+    "A": "¡Hola! 😊 Muchas gracias por escribir a House of Spencer. Tenemos clases guiadas semi-personalizadas y personalizadas. Por el momento no ofrecemos el servicio de Open-Gym. 🏋️‍♀️ ¿Te gustaría venir a una de nuestras clases de prueba gratuita? Agenda aquí: 📲 https://boxmagic.cl/sp/HouseofSpencer24"
+  },
+  {
+    "Q": "¿Necesito una orden médica para tomar sesiones de kinesiología con ustedes?",
+    "A": "No necesitas una orden médica para entrenar con nosotros. 🚑 Como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?"
+  },
+  {
+    "Q": "¿Necesito una orden médica para tomar sesiones de kinesiología con ustedes?",
+    "A": "No necesitas una orden médica para entrenar con nosotros. 🚑 Como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?"
+  },
+  {
+    "Q": "¿Necesito una orden médica para tomar sesiones de kinesiología con ustedes?",
+    "A": "No necesitas una orden médica para entrenar con nosotros. 🚑 Como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?"
+  },
+  {
+    "Q": "¿Necesito una orden médica para tomar sesiones de kinesiología con ustedes?",
+    "A": "No necesitas una orden médica para entrenar con nosotros. 🚑 Como todas nuestras clases son realizadas por kinesiólogos, nuestras sesiones son reembolsables con orden médica. 📝 ¿Necesitas más información?"
+  },
+  {
+    "Q": "¿Qué tipo de centro es House of Spencer?",
+    "A": "¡Hola! Gracias por contactarnos. 😊 Tenemos un espacio de entrenamiento en Providencia para ayudarte en tus objetivos. 🏋️‍♀️ Nuestra función es enseñar movimiento y mejorar tu biomecánica. De esta forma evitamos posibles lesiones y te ayudamos a conseguir tus objetivos alineando todos los componentes del fitness, entrenamiento y nutrición. 🍏💪"
+  },
+  {
+    "Q": "¿Entregan un reporte por cada sesión para poder reembolsar a la Isapre?",
+    "A": "¡Hola! 😊 No entregamos un reporte por sesión, pero nuestra boleta de servicios puede te permite reembolsar. Cuentanos si necesitas detallar el tipo de sesiones realizadas para facilitar tu reembolso con la Isapre. Contactanos directamente a https://walink.co/83468b para poder ayudarte mejor 📝 ¿Te ayudo con algo más?"
+  },
+  {
+    "Q": "¿Entregan un reporte por cada sesión para poder reembolsar a la Isapre?",
+    "A": "¡Hola! 😊 No entregamos un reporte por sesión, pero nuestra boleta de servicios puede te permite reembolsar. Cuentanos si necesitas detallar el tipo de sesiones realizadas para facilitar tu reembolso con la Isapre. Contactanos directamente a https://walink.co/83468b para poder ayudarte mejor 📝 ¿Te ayudo con algo más?"
+  },
+  {
+    "Q": "¿Entregan un reporte por cada sesión para poder reembolsar a la Isapre?",
+    "A": "¡Hola! 😊 No entregamos un reporte por sesión, pero nuestra boleta de servicios puede te permite reembolsar. Cuentanos si necesitas detallar el tipo de sesiones realizadas para facilitar tu reembolso con la Isapre. Contactanos directamente a https://walink.co/83468b para poder ayudarte mejor 📝 ¿Te ayudo con algo más?"
+  },
+  {
+    "Q": "¿Entregan un reporte por cada sesión para poder reembolsar a la Isapre?",
+    "A": "¡Hola! 😊 No entregamos un reporte por sesión, pero nuestra boleta de servicios puede te permite reembolsar. Cuentanos si necesitas detallar el tipo de sesiones realizadas para facilitar tu reembolso con la Isapre. Contactanos directamente a https://walink.co/83468b para poder ayudarte mejor 📝 ¿Te ayudo con algo más?"
+  },
+  {
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
+  },
+  {
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
+  },
+  {
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
+  },
+  {
+    "Q": "Hola, ¿cómo puedo agendar una clase de entrenamiento funcional?",
+    "A": "¡Hola! 💪 Puedes agendar tu clase a través de la app BoxMagic o en https://auth.boxmagic.cl/. Si no eres alumno, agenda tu clase de prueba gratuita en: 📲 https://boxmagic.cl/sp/HouseofSpencer24. ¿Necesitas ayuda con algo más?"
+  }
+]
