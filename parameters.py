@@ -8,7 +8,7 @@ Update references in your main code to match these variable names.
 # ------------------------------------------------------------------
 # 1) Assistant/Model Basic Info
 # ------------------------------------------------------------------
-ASSISTANT_NAME = "House of Spencer"
+ASSISTANT_NAME = "Spencer Consulting"
 BASE_MODEL_NAME = "gpt-4o-mini-2024-07-18"   # The base model to start from
 BASE_MODEL_SUFFIX = "base"                  # Suffix to identify the base assistant
 
@@ -28,6 +28,25 @@ FINE_TUNED_MODEL_SUFFIX = "fine_tuned_with_worst"
 EVALUATOR_MODEL_NAME = "gpt-4o-mini-2024-07-18"  # The model used for evaluation
 EVALUATOR_TEMPERATURE = 0
 EVALUATOR_TOP_P = 0.5
+
+EVALUATOR_INTRODUCTION_PROMT = """Tu labor es evaluar un asistente de IA y compararlo con respuestas humanas.
+Es decir, se te entregara una pregunta y dos respuestas, una realizada por el humano y otra por el asistente de IA y debes compararlas.
+
+Para que tengas contexto acerca del asistente, te dejo sus intrucciones:"""
+
+EVALUATOR_DESCRIPTION_PROMPT = """Para evaluar esto lo haras con un número del 1 al 5.
+
+1: La respuesta está incorrecta
+2. La respuesta está incorrecta pero tiene algo de verdad
+3. La respuesta es parcialemente correcta pero falta información
+4. La respuesta es tan correcta como la humana
+5. La respuesta es mejor que la humana
+
+Responde solo con el  numero. Nada más. Esto es de suma importancia.
+
+Nota adicional: Has especial énfasis en la correcititud de datos como los enlaces o los numeros.
+
+A continuación, se te entregará la pregunta, la respuesta humana y la pregunta del asistente."""
 
 # ------------------------------------------------------------------
 # 4) CSV Column Names

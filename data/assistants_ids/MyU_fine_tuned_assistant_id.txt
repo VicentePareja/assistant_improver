@@ -1,0 +1,4 @@
+('MyU_fine_tuned_with_worst', 'asst_I0cseoC9ZxZiwJDaxJ48b5vg')
+('MyU_fine_tuned_with_worst', 'asst_5XGumX5cnfX6kpyqC5GUA8k5')
+('MyU_fine_tuned_with_worst', 'asst_928OCRK0AwypMjmSThHxFkQ0')
+('MyU_fine_tuned_with_worst', 'asst_J5a3lyaEp2lS6xvEHdWL5QkT')
