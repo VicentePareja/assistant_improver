@@ -1,0 +1,78 @@
+[
+  {
+    "Q": "¿Qué necesito para realizar el examen de glucosa en orina?",
+    "A": "Para conocer los requisitos del examen de glucosa en orina, por favor permíteme consultar la información. 😊 (Aquí se usaría la función consultar_tabla y se entregaría la información resumida)"
+  },
+  {
+    "Q": "¿Qué necesito para realizar el examen de glucosa en orina?",
+    "A": "Para conocer los requisitos del examen de glucosa en orina, por favor permíteme consultar la información. 😊 (Aquí se usaría la función consultar_tabla y se entregaría la información resumida)"
+  },
+  {
+    "Q": "¿Qué necesito para realizar el examen de glucosa en orina?",
+    "A": "Para conocer los requisitos del examen de glucosa en orina, por favor permíteme consultar la información. 😊 (Aquí se usaría la función consultar_tabla y se entregaría la información resumida)"
+  },
+  {
+    "Q": "¿Qué necesito para realizar el examen de glucosa en orina?",
+    "A": "Para conocer los requisitos del examen de glucosa en orina, por favor permíteme consultar la información. 😊 (Aquí se usaría la función consultar_tabla y se entregaría la información resumida)"
+  },
+  {
+    "Q": "¿Cuáles son los patógenos que incluye el PCR-ETS?",
+    "A": "En Laboratorio Biomed, nuestro PCR o Panel ETS incluye: Candida Albicans Chlamydia Trachomatis Gardnerella Vaginalis Mycoplasma Genitalium Mycoplasma Hominis Treponema Pallidum Trichomonas Vaginalis Ureaplasma Parvum Ureaplasma Urealyticum Virus Herpes simple I y II Neisseria Gonorrhoeae"
+  },
+  {
+    "Q": "¿Cuáles son los patógenos que incluye el PCR-ETS?",
+    "A": "En Laboratorio Biomed, nuestro PCR o Panel ETS incluye: Candida Albicans Chlamydia Trachomatis Gardnerella Vaginalis Mycoplasma Genitalium Mycoplasma Hominis Treponema Pallidum Trichomonas Vaginalis Ureaplasma Parvum Ureaplasma Urealyticum Virus Herpes simple I y II Neisseria Gonorrhoeae"
+  },
+  {
+    "Q": "¿Cuáles son los patógenos que incluye el PCR-ETS?",
+    "A": "En Laboratorio Biomed, nuestro PCR o Panel ETS incluye: Candida Albicans Chlamydia Trachomatis Gardnerella Vaginalis Mycoplasma Genitalium Mycoplasma Hominis Treponema Pallidum Trichomonas Vaginalis Ureaplasma Parvum Ureaplasma Urealyticum Virus Herpes simple I y II Neisseria Gonorrhoeae"
+  },
+  {
+    "Q": "¿Cuáles son los patógenos que incluye el PCR-ETS?",
+    "A": "En Laboratorio Biomed, nuestro PCR o Panel ETS incluye: Candida Albicans Chlamydia Trachomatis Gardnerella Vaginalis Mycoplasma Genitalium Mycoplasma Hominis Treponema Pallidum Trichomonas Vaginalis Ureaplasma Parvum Ureaplasma Urealyticum Virus Herpes simple I y II Neisseria Gonorrhoeae"
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Buen día, gracias por comunicarte con Laboratorio Clínico Biomed! Mi nombre es Emma, soy la asistente virtual 🤗 ¿Cómo puedo ayudarte hoy? 🌟 Puedo resolver dudas sobre: ✅ Preparación para exámenes ✅ Horarios ✅ Agendar horas médicas ✅ Dirección y horarios de sucursales."
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Buen día, gracias por comunicarte con Laboratorio Clínico Biomed! Mi nombre es Emma, soy la asistente virtual 🤗 ¿Cómo puedo ayudarte hoy? 🌟 Puedo resolver dudas sobre: ✅ Preparación para exámenes ✅ Horarios ✅ Agendar horas médicas ✅ Dirección y horarios de sucursales."
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Buen día, gracias por comunicarte con Laboratorio Clínico Biomed! Mi nombre es Emma, soy la asistente virtual 🤗 ¿Cómo puedo ayudarte hoy? 🌟 Puedo resolver dudas sobre: ✅ Preparación para exámenes ✅ Horarios ✅ Agendar horas médicas ✅ Dirección y horarios de sucursales."
+  },
+  {
+    "Q": "Hola",
+    "A": "¡Buen día, gracias por comunicarte con Laboratorio Clínico Biomed! Mi nombre es Emma, soy la asistente virtual 🤗 ¿Cómo puedo ayudarte hoy? 🌟 Puedo resolver dudas sobre: ✅ Preparación para exámenes ✅ Horarios ✅ Agendar horas médicas ✅ Dirección y horarios de sucursales."
+  },
+  {
+    "Q": "Hola, ¿cuáles son los horarios de la sucursal Puerto Varas?",
+    "A": "Puerto Varas (Pio Nono 426): lun a vie toma de muestras 07:30-15:30, atención hasta 16:30; sáb toma de muestras hasta 11:30, atención hasta 13:00. 😊"
+  },
+  {
+    "Q": "Hola, ¿cuáles son los horarios de la sucursal Puerto Varas?",
+    "A": "Puerto Varas (Pio Nono 426): lun a vie toma de muestras 07:30-15:30, atención hasta 16:30; sáb toma de muestras hasta 11:30, atención hasta 13:00. 😊"
+  },
+  {
+    "Q": "Hola, ¿cuáles son los horarios de la sucursal Puerto Varas?",
+    "A": "Puerto Varas (Pio Nono 426): lun a vie toma de muestras 07:30-15:30, atención hasta 16:30; sáb toma de muestras hasta 11:30, atención hasta 13:00. 😊"
+  },
+  {
+    "Q": "Hola, ¿cuáles son los horarios de la sucursal Puerto Varas?",
+    "A": "Puerto Varas (Pio Nono 426): lun a vie toma de muestras 07:30-15:30, atención hasta 16:30; sáb toma de muestras hasta 11:30, atención hasta 13:00. 😊"
+  },
+  {
+    "Q": "Hola, ¿cuál es el horario completo de la Sucursal Centro Puerto Montt?",
+    "A": "Sucursal Centro (Benavente 474): Lun a vie: toma de muestras 07:30-16:00, atención hasta 16:30. Sáb: toma de muestras hasta 12:30, atención hasta 13:00. ¿En qué puedo ayudarte? 😊"
+  },
+  {
+    "Q": "Quiero saber el precio del cortisol libre urinario.",
+    "A": "En este canal no manejamos valores ya que depende mucho de tu previsión. Por favor escríbenos al WhatsApp +56 9 4571 1542 para que podamos ayudarte. 😊"
+  },
+  {
+    "Q": "Quiero saber el precio del cortisol libre urinario.",
+    "A": "En este canal no manejamos valores ya que depende mucho de tu previsión. Por favor escríbenos al WhatsApp +56 9 4571 1542 para que podamos ayudarte. 😊"
+  }
+]

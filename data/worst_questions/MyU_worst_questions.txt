@@ -8,20 +8,20 @@
     "A": "¡Gracias por la información, Ana! 📝 ¿Podrías proporcionarme también el número de boleta o factura de los equipos? Esto me ayudará a confirmar si la mantención está cubierta por la garantía."
   },
   {
-    "Q": "Mi nombre es Ana López, vivo en Calle Falsa 123, comuna de Providencia. Mi email es analopez@gmail.com. Tengo 2 equipos Samsung tipo Split instalados por M&U.",
-    "A": "¡Gracias por la información, Ana! 📝 ¿Podrías proporcionarme también el número de boleta o factura de los equipos? Esto me ayudará a confirmar si la mantención está cubierta por la garantía."
-  },
-  {
-    "Q": "Mi nombre es Ana López, vivo en Calle Falsa 123, comuna de Providencia. Mi email es analopez@gmail.com. Tengo 2 equipos Samsung tipo Split instalados por M&U.",
-    "A": "¡Gracias por la información, Ana! 📝 ¿Podrías proporcionarme también el número de boleta o factura de los equipos? Esto me ayudará a confirmar si la mantención está cubierta por la garantía."
-  },
-  {
     "Q": "Sí, el número de boleta es N°123456.",
     "A": "¡Perfecto! 🎉 Nuestro equipo se pondrá en contacto contigo pronto para coordinar la visita y realizar la mantención de tus equipos. 😊"
   },
   {
     "Q": "Sí, el número de boleta es N°123456.",
     "A": "¡Perfecto! 🎉 Nuestro equipo se pondrá en contacto contigo pronto para coordinar la visita y realizar la mantención de tus equipos. 😊"
+  },
+  {
+    "Q": "Mi nombre es Ana López, vivo en Calle Falsa 123, comuna de Providencia. Mi email es analopez@gmail.com. Tengo 2 equipos Samsung tipo Split instalados por M&U.",
+    "A": "¡Gracias por la información, Ana! 📝 ¿Podrías proporcionarme también el número de boleta o factura de los equipos? Esto me ayudará a confirmar si la mantención está cubierta por la garantía."
+  },
+  {
+    "Q": "Mi nombre es Ana López, vivo en Calle Falsa 123, comuna de Providencia. Mi email es analopez@gmail.com. Tengo 2 equipos Samsung tipo Split instalados por M&U.",
+    "A": "¡Gracias por la información, Ana! 📝 ¿Podrías proporcionarme también el número de boleta o factura de los equipos? Esto me ayudará a confirmar si la mantención está cubierta por la garantía."
   },
   {
     "Q": "Sí, el número de boleta es N°123456.",

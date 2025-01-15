@@ -1,0 +1,78 @@
+[
+  {
+    "Q": "Sí.",
+    "A": "Perfecto, visita nuestro sitio web en trayecto.cl. Ahí podrás completar tu pedido. ¿Necesitas algo más?"
+  },
+  {
+    "Q": "Sí.",
+    "A": "Perfecto, visita nuestro sitio web en trayecto.cl. Ahí podrás completar tu pedido. ¿Necesitas algo más?"
+  },
+  {
+    "Q": "Sí.",
+    "A": "Perfecto, visita nuestro sitio web en trayecto.cl. Ahí podrás completar tu pedido. ¿Necesitas algo más?"
+  },
+  {
+    "Q": "Sí.",
+    "A": "Perfecto, visita nuestro sitio web en trayecto.cl. Ahí podrás completar tu pedido. ¿Necesitas algo más?"
+  },
+  {
+    "Q": "No, muchas gracias.",
+    "A": "Perfecto. Muchas gracias por preferir Trayecto Bookstore. 😊"
+  },
+  {
+    "Q": "No, muchas gracias.",
+    "A": "Perfecto. Muchas gracias por preferir Trayecto Bookstore. 😊"
+  },
+  {
+    "Q": "No, muchas gracias.",
+    "A": "Perfecto. Muchas gracias por preferir Trayecto Bookstore. 😊"
+  },
+  {
+    "Q": "No, muchas gracias.",
+    "A": "Perfecto. Muchas gracias por preferir Trayecto Bookstore. 😊"
+  },
+  {
+    "Q": "¿Hacen envíos dentro de Santiago?",
+    "A": "¡Hola! Sí, enviamos dentro de Santiago (excepto San Bernardo, Colina, Padre Hurtado, Til-Til) con TRIP, nuestra empresa interna. No tenemos seguimiento, pero puedes consultarme cualquier duda 😉. ¿Quieres más información?, dime tu numero de pedido y con gusto te ayudaré."
+  },
+  {
+    "Q": "¡Hola!",
+    "A": "¡Hola! Te damos la bienvenida a Trayecto Bookstore, mi nombre es Trayectín. Podemos ayudarte con información de nuestros productos o resolver cualquier duda. ¡No dude en consultarnos! 😊"
+  },
+  {
+    "Q": "Hola, quiero saber más de Trayecto Bookstore.",
+    "A": "Trayecto Bookstore: ubicados en Santiago, ofrecemos una amplia variedad de libros y despachamos a domicilio. ¿Te gustaría saber de algún libro o juego de mesa en particular? ✨"
+  },
+  {
+    "Q": "Hola, ¿tienen libros de J.K. Rowling?",
+    "A": "¡Hola! Sí, claro, tenemos varios libros de J.K. Rowling. ¿Te gustaría saber detalles de alguno en específico? 📚"
+  },
+  {
+    "Q": "Hola, ¿tienen libros de J.K. Rowling?",
+    "A": "¡Hola! Sí, claro, tenemos varios libros de J.K. Rowling. ¿Te gustaría saber detalles de alguno en específico? 📚"
+  },
+  {
+    "Q": "Hola, ¿tienen libros de J.K. Rowling?",
+    "A": "¡Hola! Sí, claro, tenemos varios libros de J.K. Rowling. ¿Te gustaría saber detalles de alguno en específico? 📚"
+  },
+  {
+    "Q": "Hola, necesito el libro Fuego Celeste de Alice Wolf. ¿Hacen despacho a Las Condes?",
+    "A": "¡Hola! Sí, despachamos a Las Condes. Puedes realizar tu pedido en nuestro sitio web. ¿Quisieras que te envíe el link?"
+  },
+  {
+    "Q": "¿Tienen el libro El Sol Oculto?",
+    "A": "¡Hola! No lo tenemos disponible en este momento 😔. No podemos asegurar cuándo llegará, ya que dependemos de la editorial. Te recomiendo revisar nuestra web en un par de semanas o consultarnos más adelante. ¡Espero podamos ayudarte pronto! 🌟"
+  },
+  {
+    "Q": "¿Tienen el libro El Sol Oculto?",
+    "A": "¡Hola! No lo tenemos disponible en este momento 😔. No podemos asegurar cuándo llegará, ya que dependemos de la editorial. Te recomiendo revisar nuestra web en un par de semanas o consultarnos más adelante. ¡Espero podamos ayudarte pronto! 🌟"
+  },
+  {
+    "Q": "¿Tienen el libro El Sol Oculto?",
+    "A": "¡Hola! No lo tenemos disponible en este momento 😔. No podemos asegurar cuándo llegará, ya que dependemos de la editorial. Te recomiendo revisar nuestra web en un par de semanas o consultarnos más adelante. ¡Espero podamos ayudarte pronto! 🌟"
+  },
+  {
+    "Q": "¿Tienen el libro El Sol Oculto?",
+    "A": "¡Hola! No lo tenemos disponible en este momento 😔. No podemos asegurar cuándo llegará, ya que dependemos de la editorial. Te recomiendo revisar nuestra web en un par de semanas o consultarnos más adelante. ¡Espero podamos ayudarte pronto! 🌟"
+  }
+]

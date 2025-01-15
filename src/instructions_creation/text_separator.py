@@ -1,3 +1,5 @@
+# text_separator.py
+
 import sys
 sys.stdout.reconfigure(encoding='utf-8')  # Ensure UTF-8 output
 
@@ -5,13 +7,6 @@ import re
 import json
 from openai import OpenAI, AssistantEventHandler
 from typing_extensions import override
-
-# Import updated parameter names from parameters.py
-from parameters import (
-    PATH_INSTRUCTIONS_NO_EXAMPLES,
-    PATH_INSTRUCTIONS_TXT,
-    PATH_EXAMPLES_TXT,
-)
 
 ################################################################################
 # EventHandler: Handles streaming events from OpenAI (already OOP).
@@ -42,6 +37,11 @@ class TextSeparator:
         :param api_key: Your OpenAI API key
         :param assistant_id: The ID of your target assistant on OpenAI
         """
+        import parameters
+
+        self.path_intructions_no_examples = parameters.PATH_INSTRUCTIONS_NO_EXAMPLES
+        self.path_intructions_txt = parameters.PATH_INSTRUCTIONS_TXT
+        self.path_examples_txt = parameters.PATH_EXAMPLES_TXT
         self.api_key = api_key
         self.assistant_id = assistant_id
         self.client = OpenAI(api_key=self.api_key)
@@ -54,7 +54,7 @@ class TextSeparator:
         print("Starting the TextSeparator run process.")
 
         # 1. Read your instructions from a local file
-        prompt = self._read_instructions(PATH_INSTRUCTIONS_TXT)
+        prompt = self._read_instructions(self.path_intructions_txt)
 
         # 2. Send prompt to the assistant and capture the combined response
         combined_response = self._ask_assistant(prompt)
@@ -80,8 +80,8 @@ class TextSeparator:
         # 5. Write the results to file
         self._write_results(text_without_examples, only_examples)
         print(
-            f"Saved JSON fields into '{PATH_INSTRUCTIONS_NO_EXAMPLES}' "
-            f"and '{PATH_EXAMPLES_TXT}'"
+            f"Saved JSON fields into '{self.path_intructions_no_examples}' "
+            f"and '{self.path_examples_txt}'"
         )
 
     ########################################################################
@@ -191,10 +191,10 @@ class TextSeparator:
         """
         Writes the extracted strings to the specified output files.
         """
-        with open(PATH_INSTRUCTIONS_NO_EXAMPLES, "w", encoding="utf-8") as f1:
+        with open(self.path_intructions_no_examples, "w", encoding="utf-8") as f1:
             f1.write(text_without_examples)
 
-        with open(PATH_EXAMPLES_TXT, "w", encoding="utf-8") as f2:
+        with open(self.path_examples_txt, "w", encoding="utf-8") as f2:
             # If only_examples is a list, we can dump as JSON. Otherwise, just write it directly.
             if isinstance(only_examples, list):
                 f2.write(json.dumps(only_examples, ensure_ascii=False, indent=2))

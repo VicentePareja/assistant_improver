@@ -8,7 +8,9 @@ Update references in your main code to match these variable names.
 # ------------------------------------------------------------------
 # 1) Assistant/Model Basic Info
 # ------------------------------------------------------------------
-ASSISTANT_NAME = "Spencer Consulting"
+# parameters.py
+
+ASSISTANT_NAME = "House of Spencer" #Change this to your assistant's name
 BASE_MODEL_NAME = "gpt-4o-mini-2024-07-18"   # The base model to start from
 BASE_MODEL_SUFFIX = "base"                  # Suffix to identify the base assistant
 

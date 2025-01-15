@@ -2,3 +2,6 @@
 ('MyU_fine_tuned_with_worst', 'asst_5XGumX5cnfX6kpyqC5GUA8k5')
 ('MyU_fine_tuned_with_worst', 'asst_928OCRK0AwypMjmSThHxFkQ0')
 ('MyU_fine_tuned_with_worst', 'asst_J5a3lyaEp2lS6xvEHdWL5QkT')
+('MyU_fine_tuned_with_worst', 'asst_rGMf8H7bAB8zSBpknUPuIS7Q')
+('MyU_fine_tuned_with_worst', 'asst_81N49YtX6hcIJWjOg5MObooa')
+('MyU_fine_tuned_with_worst', 'asst_ElwuIx9dC3IhW99ssY9NP6MC')

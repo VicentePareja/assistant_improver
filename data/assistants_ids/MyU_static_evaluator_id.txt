@@ -6,3 +6,6 @@
 ('MyU_static_evaluator', 'asst_tchrolusl5Yjp7JhdyNVgpE8')
 ('MyU_static_evaluator', 'asst_eFuZ2z9Rz864P1i6MUGL3dKC')
 ('MyU_static_evaluator', 'asst_mYbvkP6gjaXQQKzw8rqtQzfp')
+('MyU_static_evaluator', 'asst_7MklOptBO6zGqg3NwFOmU0JK')
+('MyU_static_evaluator', 'asst_uCsOPpxAKzPRClItfAcHe77P')
+('MyU_static_evaluator', 'asst_50eRJ23RasXI0ZBHzpGttMI5')
