@@ -1,6 +1,7 @@
 import json
 import csv
 from parameters import COLUMN_HUMAN_ANSWER, COLUMN_QUESTION
+import re
 
 class StaticExamplesTestCreator:
     def __init__(self, input_test_file, output_test_file):
@@ -8,9 +9,19 @@ class StaticExamplesTestCreator:
         self.output_test_file = output_test_file
 
     def create_test(self):
-        # Read the JSON-like file
+        # Read the file content
         with open(self.input_test_file, "r", encoding="utf-8") as file:
-            data = json.load(file)  # Parse the JSON data
+            raw_content = file.read()
+
+        # Normalize quotes (convert single quotes to double quotes)
+        normalized_content = re.sub(r"(?<!\\)'", '"', raw_content)
+
+        try:
+            # Parse the normalized content as JSON
+            data = json.loads(normalized_content)
+        except json.JSONDecodeError as e:
+            print(f"Failed to parse JSON: {e}")
+            return
 
         # Write to the CSV file
         with open(self.output_test_file, "w", newline='', encoding="utf-8") as csv_file:

@@ -1,0 +1,78 @@
+[
+  {
+    "Q": "Hola, necesito una limpieza dental. ¿Cuáles son sus horarios de atención?",
+    "A": "Realizamos limpiezas dentales como parte de nuestros servicios de odontología general. Las evaluaciones son gratuitas y estamos disponibles de lunes a viernes de 09:00 a 13:00 y de 14:30 a 19:00. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, necesito una limpieza dental. ¿Cuáles son sus horarios de atención?",
+    "A": "Realizamos limpiezas dentales como parte de nuestros servicios de odontología general. Las evaluaciones son gratuitas y estamos disponibles de lunes a viernes de 09:00 a 13:00 y de 14:30 a 19:00. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿qué me pueden decir sobre los implantes dentales?",
+    "A": "Realizamos implantes dentales para restaurar tanto la funcionalidad como la estética dental. Las evaluaciones son gratuitas y están disponibles en horario de tarde. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿qué me pueden decir sobre los implantes dentales?",
+    "A": "Realizamos implantes dentales para restaurar tanto la funcionalidad como la estética dental. Las evaluaciones son gratuitas y están disponibles en horario de tarde. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿qué me pueden decir sobre los implantes dentales?",
+    "A": "Realizamos implantes dentales para restaurar tanto la funcionalidad como la estética dental. Las evaluaciones son gratuitas y están disponibles en horario de tarde. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿qué me pueden decir sobre los implantes dentales?",
+    "A": "Realizamos implantes dentales para restaurar tanto la funcionalidad como la estética dental. Las evaluaciones son gratuitas y están disponibles en horario de tarde. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿qué me pueden decir sobre los tratamientos de conducto (endodoncia)?",
+    "A": "Realizamos tratamientos de conducto como parte de nuestros servicios de endodoncia. Las evaluaciones son gratuitas y están disponibles en las tardes. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿qué me pueden decir sobre los tratamientos de conducto (endodoncia)?",
+    "A": "Realizamos tratamientos de conducto como parte de nuestros servicios de endodoncia. Las evaluaciones son gratuitas y están disponibles en las tardes. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿qué me pueden decir sobre los tratamientos de conducto (endodoncia)?",
+    "A": "Realizamos tratamientos de conducto como parte de nuestros servicios de endodoncia. Las evaluaciones son gratuitas y están disponibles en las tardes. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, tengo problemas con las encías, ¿me pueden ayudar con eso?",
+    "A": "Claro, ofrecemos tratamientos especializados para la salud de las encías. Las evaluaciones son gratuitas y están disponibles en las tardes. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, tengo problemas con las encías, ¿me pueden ayudar con eso?",
+    "A": "Claro, ofrecemos tratamientos especializados para la salud de las encías. Las evaluaciones son gratuitas y están disponibles en las tardes. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, tengo problemas con las encías, ¿me pueden ayudar con eso?",
+    "A": "Claro, ofrecemos tratamientos especializados para la salud de las encías. Las evaluaciones son gratuitas y están disponibles en las tardes. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, tengo problemas con las encías, ¿me pueden ayudar con eso?",
+    "A": "Claro, ofrecemos tratamientos especializados para la salud de las encías. Las evaluaciones son gratuitas y están disponibles en las tardes. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿me pueden informar sobre cirugía maxilofacial?",
+    "A": "Realizamos cirugías maxilofaciales para mejorar la función y estética facial. Las evaluaciones son gratuitas y se realizan los viernes por medio. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿me pueden informar sobre cirugía maxilofacial?",
+    "A": "Realizamos cirugías maxilofaciales para mejorar la función y estética facial. Las evaluaciones son gratuitas y se realizan los viernes por medio. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿me pueden informar sobre cirugía maxilofacial?",
+    "A": "Realizamos cirugías maxilofaciales para mejorar la función y estética facial. Las evaluaciones son gratuitas y se realizan los viernes por medio. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿me pueden informar sobre cirugía maxilofacial?",
+    "A": "Realizamos cirugías maxilofaciales para mejorar la función y estética facial. Las evaluaciones son gratuitas y se realizan los viernes por medio. ¿Te gustaría agendar una evaluación?"
+  },
+  {
+    "Q": "Hola, ¿ofrecen atención dental para niños?",
+    "A": "Sí, contamos con servicios de odontología pediátrica especializados para niños. ¿Te gustaría agendar una evaluación gratuita para tu hijo?"
+  },
+  {
+    "Q": "Hola, ¿ofrecen atención dental para niños?",
+    "A": "Sí, contamos con servicios de odontología pediátrica especializados para niños. ¿Te gustaría agendar una evaluación gratuita para tu hijo?"
+  }
+]

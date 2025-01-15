@@ -1,0 +1,78 @@
+[
+  {
+    "Q": "Hola, estoy interesado en implementar un asistente virtual en mi negocio, pero me preocupa que sea complicado.",
+    "A": "¡Hola! 🤖 No te preocupes, la implementación es muy sencilla. Nuestro equipo se encarga de todo el proceso técnico. Solo necesitamos conocer tus necesidades, y en pocos días tendrás el asistente funcionando sin complicaciones. ¡Estamos aquí para hacerte la vida más fácil! 🚀"
+  },
+  {
+    "Q": "Hola, estoy interesado en implementar un asistente virtual en mi negocio, pero me preocupa que sea complicado.",
+    "A": "¡Hola! 🤖 No te preocupes, la implementación es muy sencilla. Nuestro equipo se encarga de todo el proceso técnico. Solo necesitamos conocer tus necesidades, y en pocos días tendrás el asistente funcionando sin complicaciones. ¡Estamos aquí para hacerte la vida más fácil! 🚀"
+  },
+  {
+    "Q": "Hola, estoy interesado en implementar un asistente virtual en mi negocio, pero me preocupa que sea complicado.",
+    "A": "¡Hola! 🤖 No te preocupes, la implementación es muy sencilla. Nuestro equipo se encarga de todo el proceso técnico. Solo necesitamos conocer tus necesidades, y en pocos días tendrás el asistente funcionando sin complicaciones. ¡Estamos aquí para hacerte la vida más fácil! 🚀"
+  },
+  {
+    "Q": "Hola, estoy interesado en implementar un asistente virtual en mi negocio, pero me preocupa que sea complicado.",
+    "A": "¡Hola! 🤖 No te preocupes, la implementación es muy sencilla. Nuestro equipo se encarga de todo el proceso técnico. Solo necesitamos conocer tus necesidades, y en pocos días tendrás el asistente funcionando sin complicaciones. ¡Estamos aquí para hacerte la vida más fácil! 🚀"
+  },
+  {
+    "Q": "¿En cuánto tiempo podría tener el asistente operativo?",
+    "A": "Dependiendo de tus requerimientos, podemos tener el asistente listo en cuestión de días. Nos esforzamos por ofrecer una implementación ágil para que empieces a ver los beneficios lo antes posible. ⏱️"
+  },
+  {
+    "Q": "¿En cuánto tiempo podría tener el asistente operativo?",
+    "A": "Dependiendo de tus requerimientos, podemos tener el asistente listo en cuestión de días. Nos esforzamos por ofrecer una implementación ágil para que empieces a ver los beneficios lo antes posible. ⏱️"
+  },
+  {
+    "Q": "¿En cuánto tiempo podría tener el asistente operativo?",
+    "A": "Dependiendo de tus requerimientos, podemos tener el asistente listo en cuestión de días. Nos esforzamos por ofrecer una implementación ágil para que empieces a ver los beneficios lo antes posible. ⏱️"
+  },
+  {
+    "Q": "¿En cuánto tiempo podría tener el asistente operativo?",
+    "A": "Dependiendo de tus requerimientos, podemos tener el asistente listo en cuestión de días. Nos esforzamos por ofrecer una implementación ágil para que empieces a ver los beneficios lo antes posible. ⏱️"
+  },
+  {
+    "Q": "¿Es posible personalizar el asistente para que refleje el estilo de mi marca?",
+    "A": "¡Claro que sí! 🖌️ Adaptamos el asistente para reflejar la identidad de tu marca, incluyendo lenguaje, tono y estilo. Queremos que tus clientes sientan que están interactuando directamente contigo."
+  },
+  {
+    "Q": "¿Es posible personalizar el asistente para que refleje el estilo de mi marca?",
+    "A": "¡Claro que sí! 🖌️ Adaptamos el asistente para reflejar la identidad de tu marca, incluyendo lenguaje, tono y estilo. Queremos que tus clientes sientan que están interactuando directamente contigo."
+  },
+  {
+    "Q": "¿Es posible personalizar el asistente para que refleje el estilo de mi marca?",
+    "A": "¡Claro que sí! 🖌️ Adaptamos el asistente para reflejar la identidad de tu marca, incluyendo lenguaje, tono y estilo. Queremos que tus clientes sientan que están interactuando directamente contigo."
+  },
+  {
+    "Q": "¿Cómo afectará esto a mi equipo actual de atención al cliente?",
+    "A": "El asistente virtual se encarga de las consultas repetitivas y tareas rutinarias, liberando a tu equipo para que se enfoque en problemas más complejos y en ofrecer una atención más personalizada. Esto mejora la eficiencia y satisfacción tanto del personal como de los clientes. 💼"
+  },
+  {
+    "Q": "¿Cómo afectará esto a mi equipo actual de atención al cliente?",
+    "A": "El asistente virtual se encarga de las consultas repetitivas y tareas rutinarias, liberando a tu equipo para que se enfoque en problemas más complejos y en ofrecer una atención más personalizada. Esto mejora la eficiencia y satisfacción tanto del personal como de los clientes. 💼"
+  },
+  {
+    "Q": "¿Cómo afectará esto a mi equipo actual de atención al cliente?",
+    "A": "El asistente virtual se encarga de las consultas repetitivas y tareas rutinarias, liberando a tu equipo para que se enfoque en problemas más complejos y en ofrecer una atención más personalizada. Esto mejora la eficiencia y satisfacción tanto del personal como de los clientes. 💼"
+  },
+  {
+    "Q": "¿Es seguro para mis clientes usar este sistema?",
+    "A": "Absolutamente. 🔒 La seguridad y confidencialidad son nuestras prioridades. Utilizamos protocolos robustos para proteger la información de tus clientes y cumplir con las normativas vigentes sobre protección de datos."
+  },
+  {
+    "Q": "¿Es seguro para mis clientes usar este sistema?",
+    "A": "Absolutamente. 🔒 La seguridad y confidencialidad son nuestras prioridades. Utilizamos protocolos robustos para proteger la información de tus clientes y cumplir con las normativas vigentes sobre protección de datos."
+  },
+  {
+    "Q": "¿Es seguro para mis clientes usar este sistema?",
+    "A": "Absolutamente. 🔒 La seguridad y confidencialidad son nuestras prioridades. Utilizamos protocolos robustos para proteger la información de tus clientes y cumplir con las normativas vigentes sobre protección de datos."
+  },
+  {
+    "Q": "¿Puedo probar el servicio antes de decidirme?",
+    "A": "¡Por supuesto! 🎁 Te invitamos a probar los robots de nuestros clientes actuales para que veas cómo funcionan en situaciones reales. Después, podemos reunirnos para crear una demo personalizada que se ajuste a tus necesidades."
+  },
+  {
+    "Q": "¿Puedo probar el servicio antes de decidirme?",
+    "A": "¡Por supuesto! 🎁 Te invitamos a probar los robots de nuestros clientes actuales para que veas cómo funcionan en situaciones reales. Después, podemos reunirnos para crear una demo personalizada que se ajuste a tus necesidades."
+  }
+]

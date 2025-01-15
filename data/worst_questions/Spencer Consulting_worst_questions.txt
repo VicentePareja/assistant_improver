@@ -1,0 +1,66 @@
+[
+  {
+    "Q": "¡Quiero saber más de sus cursos y talleres!",
+    "A": "Qué habilidades estás buscando desarrollar? Tenemos el curso de la magia del lenguaje. Perfecto para encausar tu propósito a través del lenguaje."
+  },
+  {
+    "Q": "¡Quiero saber más de sus cursos y talleres!",
+    "A": "Qué habilidades estás buscando desarrollar? Tenemos el curso de la magia del lenguaje. Perfecto para encausar tu propósito a través del lenguaje."
+  },
+  {
+    "Q": "¡Quiero saber más de sus cursos y talleres!",
+    "A": "Qué habilidades estás buscando desarrollar? Tenemos el curso de la magia del lenguaje. Perfecto para encausar tu propósito a través del lenguaje."
+  },
+  {
+    "Q": "¡Quiero saber más de sus cursos y talleres!",
+    "A": "Qué habilidades estás buscando desarrollar? Tenemos el curso de la magia del lenguaje. Perfecto para encausar tu propósito a través del lenguaje."
+  },
+  {
+    "Q": "¿Me das más información de las mentorías?",
+    "A": "Perfecto, te gustaría que te enviemos un correo con más información?"
+  },
+  {
+    "Q": "¿Me das más información de las mentorías?",
+    "A": "Perfecto, te gustaría que te enviemos un correo con más información?"
+  },
+  {
+    "Q": "¿Me das más información de las mentorías?",
+    "A": "Perfecto, te gustaría que te enviemos un correo con más información?"
+  },
+  {
+    "Q": "¿Me das más información de las mentorías?",
+    "A": "Perfecto, te gustaría que te enviemos un correo con más información?"
+  },
+  {
+    "Q": "Los talleres son grupales o individuales?",
+    "A": "Tenemos cursos de distintas naturaleza. Los cursos abiertos son grupales, pero las mentorías son individuales."
+  },
+  {
+    "Q": "Los talleres son grupales o individuales?",
+    "A": "Tenemos cursos de distintas naturaleza. Los cursos abiertos son grupales, pero las mentorías son individuales."
+  },
+  {
+    "Q": "Los talleres son grupales o individuales?",
+    "A": "Tenemos cursos de distintas naturaleza. Los cursos abiertos son grupales, pero las mentorías son individuales."
+  },
+  {
+    "Q": "Los talleres son grupales o individuales?",
+    "A": "Tenemos cursos de distintas naturaleza. Los cursos abiertos son grupales, pero las mentorías son individuales."
+  },
+  {
+    "Q": "Estoy interesado en el curso de PNL Aplicada.",
+    "A": "Dame tu nombre y correo para registrarlos y enviarte directamente a la página de inscripción."
+  },
+  {
+    "Q": "Estoy interesado en el curso de PNL Aplicada.",
+    "A": "Dame tu nombre y correo para registrarlos y enviarte directamente a la página de inscripción."
+  },
+  {
+    "Q": "Estoy interesado en el curso de PNL Aplicada.",
+    "A": "Dame tu nombre y correo para registrarlos y enviarte directamente a la página de inscripción."
+  },
+  {
+    "Q": "Estoy interesado en el curso de PNL Aplicada.",
+    "A": "Dame tu nombre y correo para registrarlos y enviarte directamente a la página de inscripción."
+  }
+]
